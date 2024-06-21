@@ -27,12 +27,6 @@
         "adapter": "kotlin",
         "value": "live.einfachgustaf.mods.smp.Entrypoint"
       }
-    ],
-    "client": [
-      {
-        "adapter": "kotlin",
-        "value": "live.einfachgustaf.mods.smp.Entrypoint"
-      }
     ]
   },
   "mixins": [
