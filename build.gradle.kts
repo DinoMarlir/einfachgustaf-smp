@@ -26,6 +26,7 @@ dependencies {
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
     include(implementation("net.kyori:adventure-platform-fabric:5.13.0")!!)
+    include(implementation("net.kyori:adventure-text-minimessage:4.17.0")!!)
 }
 
 tasks {
