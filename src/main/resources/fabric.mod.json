@@ -1,42 +1,42 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "einfachgustaf-smp",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "Example description",
+  "name": "EinfachGustaf SMP",
+  "description": "The reborn of the EinfachGustaf Minecraft SMP",
   "authors": [
-    "Joe"
+    "Marlon Röder"
   ],
   "contact": {
-    "homepage": "https://example.com/",
-    "issues": "https://example.com/",
-    "sources": "https://example.com/"
+    "homepage": "https://einfachgustaf.live/",
+    "issues": "https://github.com/DinoMarlir/einfachgustaf-smp/issues",
+    "sources": "https://github.com/DinoMarlir/einfachgustaf-smp/"
   },
   "license": "GPLv3+",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "assets/smp/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       {
         "adapter": "kotlin",
-        "value": "org.example.examplemod.Manager"
+        "value": "live.einfachgustaf.mods.smp.Entrypoint"
       }
     ],
     "server": [
       {
         "adapter": "kotlin",
-        "value": "org.example.examplemod.Manager"
+        "value": "live.einfachgustaf.mods.smp.Entrypoint"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "org.example.examplemod.Manager"
+        "value": "live.einfachgustaf.mods.smp.Entrypoint"
       }
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "smp.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14",
