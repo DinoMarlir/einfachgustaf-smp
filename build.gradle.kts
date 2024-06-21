@@ -22,6 +22,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:1.10.19+kotlin.1.9.23")
 
     modImplementation("net.silkmc:silk-core:$silkVersion")
+    modImplementation("net.silkmc:silk-commands:$silkVersion")
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
 }
