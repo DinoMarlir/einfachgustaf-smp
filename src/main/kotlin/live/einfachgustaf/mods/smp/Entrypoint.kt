@@ -1,14 +1,14 @@
-package org.example.examplemod
+package live.einfachgustaf.mods.smp
 
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.api.DedicatedServerModInitializer
 import net.fabricmc.api.ModInitializer
 import org.apache.logging.log4j.LogManager
 
-val logger = LogManager.getLogger("examplemod")
+object Entrypoint: ModInitializer, DedicatedServerModInitializer, ClientModInitializer {
 
-object Manager: ModInitializer, DedicatedServerModInitializer, ClientModInitializer {
-
+    val logger = LogManager.getLogger("smp")
+    
     override fun onInitialize() {
         // Common initialization
     }

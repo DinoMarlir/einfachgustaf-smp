@@ -6,8 +6,8 @@ plugins {
     id("fabric-loom") version "1.6-SNAPSHOT"
 }
 
-group = "org.example"
-version = "1.0.0"
+group = "live.einfachgustaf"
+version = "1.0"
 
 repositories {
     mavenCentral()
