@@ -3,3 +3,4 @@ run
 .idea
 build
 *.launch
+*.DS_Store
