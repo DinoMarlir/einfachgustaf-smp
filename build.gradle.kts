@@ -15,12 +15,15 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:1.20.6")
-    mappings("net.fabricmc:yarn:1.20.6+build.1")
+    mappings(loom.officialMojangMappings())
+
     modImplementation("net.fabricmc:fabric-loader:0.15.10")
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.97.8+1.20.6")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.10.19+kotlin.1.9.23")
 
     modImplementation("net.silkmc:silk-core:$silkVersion")
+
+    include(implementation("me.obsilabor", "alert", "1.0.8"))
 }
 
 tasks {
