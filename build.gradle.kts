@@ -25,6 +25,7 @@ dependencies {
     modImplementation("net.silkmc:silk-commands:$silkVersion")
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
+    include(implementation("net.kyori:adventure-platform-fabric:5.13.0")!!)
 }
 
 tasks {
