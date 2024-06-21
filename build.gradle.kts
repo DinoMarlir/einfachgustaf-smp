@@ -2,7 +2,8 @@ val javaVersion = 21
 val silkVersion = "1.10.5"
 
 plugins {
-    kotlin("jvm") version "1.9.23"
+    kotlin("jvm") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.0"
     id("fabric-loom") version "1.6-SNAPSHOT"
 }
 
@@ -25,6 +26,7 @@ dependencies {
     modImplementation("net.silkmc:silk-commands:$silkVersion")
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
+    include(implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.7.0"))
 }
 
 tasks {
