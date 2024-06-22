@@ -46,7 +46,3 @@ tasks {
         filesMatching("fabric.mod.json") { expand(properties) }
     }
 }
-
-loom {
-    serverOnlyMinecraftJar()
-}
