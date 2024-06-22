@@ -19,7 +19,7 @@ dependencies {
     mappings(loom.officialMojangMappings())
 
     modImplementation("net.fabricmc:fabric-loader:0.15.10")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.97.8+1.20.6")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.100.2+1.20.6")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.10.19+kotlin.1.9.23")
 
     modImplementation("net.silkmc:silk-core:$silkVersion")
