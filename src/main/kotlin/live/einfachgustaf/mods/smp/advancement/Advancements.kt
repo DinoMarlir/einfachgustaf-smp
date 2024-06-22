@@ -13,6 +13,14 @@ object Advancements {
 
     private val advancements = mutableListOf<AdvancementHolder>()
 
+    fun advancements(): List<AdvancementHolder> {
+        return advancements
+    }
+
+    fun advancement(resourceLocation: ResourceLocation): AdvancementHolder? {
+        return advancements.firstOrNull { it.id == resourceLocation }
+    }
+
     fun advancement(path: String): AdvancementHolder? {
         return advancements.firstOrNull { it.id == res(path) }
     }
@@ -21,7 +29,7 @@ object Advancements {
         return ResourceLocation("einfachgustaf:/root/$path")
     }
 
-    fun register(forAdvancement: GustafAdvancement, path: String, parent: AdvancementHolder? = null): AdvancementHolder {
+    fun register(forAdvancement: GustafAdvancement, path: String, parent: AdvancementHolder? = null, x: Float = 0f, y: Float = 0f): AdvancementHolder {
         val entry = Advancement.Builder.advancement()
             .display(DisplayInfo(
                 forAdvancement.displayIcon,
@@ -32,7 +40,7 @@ object Advancements {
                 true,
                 true,
                 true
-            ))
+            ).location(x, y))
             .addCriterion("dummy", CriteriaTriggers.IMPOSSIBLE.createCriterion(ImpossibleTrigger.TriggerInstance()))
         if (parent != null) {
             entry.parent(parent)
@@ -64,10 +72,15 @@ object Advancements {
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                listOf(),
+                listOf(advancement),
                 setOf(),
                 mapOf(advancement.id to progress)
             )
         )
+    }
+
+    fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {
+        setLocation(x, y)
+        return this
     }
 }
