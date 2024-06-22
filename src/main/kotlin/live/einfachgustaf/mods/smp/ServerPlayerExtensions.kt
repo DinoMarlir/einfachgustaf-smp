@@ -26,7 +26,7 @@ fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack) {
             AdvancementType.TASK,
             true,
             true,
-            true
+           true
         ))
         .addCriterion("dummy", PlayerTrigger.TriggerInstance.tick())
         .build(ResourceLocation("einfachgustaf:/root/dummy"))
@@ -43,5 +43,16 @@ fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack) {
             mapOf(advancement.id to progress)
         )
     )
-    LOGGER.debug("Sent advancement packet to $stringUUID")
+    LOGGER.debug("Sent advancement creation packet to $stringUUID")
+    // Now remove the packet so it doesn't show up in the advancements screen
+    connection.send(
+        ClientboundUpdateAdvancementsPacket(
+            false,
+            listOf(),
+            setOf(advancement.id),
+            mapOf()
+        )
+    )
+    LOGGER.debug("Sent advancement deletion packet to $stringUUID")
+
 }
