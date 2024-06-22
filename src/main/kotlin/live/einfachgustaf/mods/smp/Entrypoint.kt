@@ -1,5 +1,6 @@
 package live.einfachgustaf.mods.smp
 
+import com.mojang.brigadier.arguments.StringArgumentType
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.commands.Commands
 import net.minecraft.commands.arguments.item.ItemArgument
@@ -18,13 +19,13 @@ fun initMain() {
 fun initServer() {
     val context = Commands.createValidationContext(VanillaRegistries.createLookup())
     command("notify") {
+        requiresPermissionLevel(1)
         argument<ItemInput>("item", ItemArgument.item(context)) { item ->
-            argument<String>("text") { text ->
+            argument<String>("text", StringArgumentType.greedyString()) { text ->
                 runs {
                     source.playerOrException.sendNotifcation(literalText(text.invoke(this)), item.invoke(this).createItemStack(1, false))
                 }
             }
         }
     }
-
 }
