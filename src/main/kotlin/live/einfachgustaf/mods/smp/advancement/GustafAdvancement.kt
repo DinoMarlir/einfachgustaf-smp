@@ -10,6 +10,6 @@ data class GustafAdvancement(
     val title: Component,
     val description: Component,
     val type: AdvancementType,
-    val backgroundResource: ResourceLocation = ResourceLocation("textures/gui/advancements/backgrounds/adventure.png")
+    val backgroundResource: ResourceLocation = Advancements.DEFAULT_RESOURCE
 ) {
 }
