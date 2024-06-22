@@ -17,10 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "live.einfachgustaf.mods.smp.Entrypoint"
+      "live.einfachgustaf.mods.smp.EntrypointKt::initServer"
     ],
     "server": [
-      "live.einfachgustaf.mods.smp.Entrypoint"
+      "live.einfachgustaf.mods.smp.EntrypointKt::initServer"
     ]
   },
   "mixins": [
