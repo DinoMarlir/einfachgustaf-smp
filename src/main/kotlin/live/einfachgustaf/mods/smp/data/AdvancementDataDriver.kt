@@ -5,6 +5,7 @@ import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.data.serialization.ItemStackSerializer
 import net.minecraft.world.item.ItemStack
 
+@Suppress("unused")
 @Serializable
 data class AdvancementData(
     val root: GustafAdvancement,

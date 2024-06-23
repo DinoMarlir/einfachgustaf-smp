@@ -1,17 +1,11 @@
 package live.einfachgustaf.mods.smp
 
 import com.mojang.brigadier.arguments.StringArgumentType
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerializationStrategy
-import kotlinx.serialization.UseSerializers
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
-import live.einfachgustaf.mods.smp.data.AdvancementData
-import live.einfachgustaf.mods.smp.data.AdvancementHolder
 import live.einfachgustaf.mods.smp.data.ItemStackHolder
-import live.einfachgustaf.mods.smp.data.serialization.ItemStackSerializer
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.commands.Commands
@@ -30,14 +24,7 @@ val LOGGER: Logger = LogManager.getLogger("smp")
 fun initMain() {
 }
 
-@OptIn(ExperimentalSerializationApi::class)
-val JSON = Json {
-    prettyPrint = true
-    prettyPrintIndent = "  "
-    isLenient = true
-    ignoreUnknownKeys = true
-}
-
+@Suppress("UNUSED_VARIABLE")
 fun initServer() {
     // ADVANCEMENTS
     val root = Advancements.createTab(
