@@ -1,8 +1,14 @@
 package live.einfachgustaf.mods.smp
 
 import com.mojang.brigadier.arguments.StringArgumentType
+import kotlinx.serialization.SerializationStrategy
+import kotlinx.serialization.UseSerializers
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
+import live.einfachgustaf.mods.smp.data.ItemStackHolder
+import live.einfachgustaf.mods.smp.data.serialization.ItemStackSerializer
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.commands.Commands
@@ -67,6 +73,13 @@ fun initServer() {
             runs {
                 Advancements.awardAdvancement(source.playerOrException, Advancements.advancement(ResourceLocation(advancement.invoke(this)))!!)
             }
+        }
+    }
+    command("serialize-item-test") {
+        requiresPermissionLevel(1)
+        runs {
+            val item = ItemStackHolder(source.playerOrException.mainHandItem)
+            source.sendSystemMessage(literalText(Json.encodeToString(item)))
         }
     }
     // EVENTS
