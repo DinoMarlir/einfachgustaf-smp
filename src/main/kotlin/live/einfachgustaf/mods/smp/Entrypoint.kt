@@ -1,9 +1,11 @@
 package live.einfachgustaf.mods.smp
 
 import com.mojang.brigadier.arguments.StringArgumentType
+import com.mojang.brigadier.exceptions.CommandExceptionType
+import com.mojang.brigadier.exceptions.CommandSyntaxException
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
-import net.fabricmc.fabric.api.networking.v1.PacketSender
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.commands.Commands
@@ -11,11 +13,8 @@ import net.minecraft.commands.arguments.item.ItemArgument
 import net.minecraft.commands.arguments.item.ItemInput
 import net.minecraft.data.registries.VanillaRegistries
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.server.MinecraftServer
-import net.minecraft.server.network.ServerGamePacketListenerImpl
 import net.minecraft.world.item.Items
 import net.silkmc.silk.commands.command
-import net.silkmc.silk.core.annotations.ExperimentalSilkApi
 import net.silkmc.silk.core.text.literalText
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -25,28 +24,41 @@ val LOGGER: Logger = LogManager.getLogger("smp")
 fun initMain() {
 }
 
-@OptIn(ExperimentalSilkApi::class)
 fun initServer() {
     // ADVANCEMENTS
-    val root = Advancements.register(
+    val root = Advancements.createTab(
+        GustafAdvancement(Items.WIND_CHARGE.defaultInstance, literalText("EinfachGustaf"), literalText("Test Advancements"), AdvancementType.TASK, ResourceLocation("textures/block/melon_side.png"))
+    )
+    val welcome = Advancements.register(
         GustafAdvancement(Items.HONEYCOMB.defaultInstance, literalText("Bee welcome!"), literalText("We're glad to have you here!"), AdvancementType.TASK),
         "welcome",
-        null
+        root,
+        x = 1.5f
     )
     Advancements.register(
         GustafAdvancement(Items.OAK_BOAT.defaultInstance, literalText("Say hello!"), literalText("Introduce yourself in the chat!"), AdvancementType.GOAL),
         "welcome/hello",
-        root,
-        x = 3f
+        welcome,
+        x = 3f,
+        y = 2f
     )
     // COMMANDS
     val context = Commands.createValidationContext(VanillaRegistries.createLookup())
     command("notify") {
         requiresPermissionLevel(1)
         argument<ItemInput>("item", ItemArgument.item(context)) { item ->
-            argument<String>("text", StringArgumentType.greedyString()) { text ->
-                runs {
-                    source.playerOrException.sendNotifcation(literalText(text.invoke(this)), item.invoke(this).createItemStack(1, false))
+            argument<String>("type") { type ->
+                suggestList { listOf("TASK", "GOAL", "CHALLENGE") }
+                argument<String>("text", StringArgumentType.greedyString()) { text ->
+                    runs {
+                        val remappedType = when(type.invoke(this)) {
+                            "TASK" -> AdvancementType.TASK
+                            "GOAL" -> AdvancementType.GOAL
+                            "CHALLENGE" -> AdvancementType.CHALLENGE
+                            else -> throw IllegalArgumentException()
+                        }
+                        source.playerOrException.sendNotifcation(literalText(text.invoke(this)), item.invoke(this).createItemStack(1, false), remappedType)
+                    }
                 }
             }
         }

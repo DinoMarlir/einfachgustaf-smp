@@ -16,16 +16,16 @@ import java.util.*
  * @param content - Content of the notification
  * @param icon - Item to be shown as icon
  */
-fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack) {
+fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack, type: AdvancementType) {
    val advancement = Advancement.Builder.advancement()
         .display(DisplayInfo(
             icon,
             content,
             literalText("This should not appear ingame"),
             Optional.of(Advancements.DEFAULT_RESOURCE),
-            AdvancementType.TASK,
+            type,
             true,
-            true,
+            false,
            true
         ))
         .addCriterion("dummy", PlayerTrigger.TriggerInstance.tick())
