@@ -8,6 +8,7 @@ import net.minecraft.advancements.*
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
+import net.minecraft.world.entity.item.ItemEntity
 import net.silkmc.silk.core.task.mcCoroutineScope
 
 object Advancements {
@@ -81,21 +82,38 @@ object Advancements {
         )
     }
 
-    fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompilableAdvancement, isRestore: Boolean = false) {
+    suspend fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompilableAdvancement, isRestore: Boolean = false, ignoreDuplicate: Boolean = false) {
+        var restoreOrDuplicate = isRestore
         val progress = AdvancementProgress()
         val requirements = AdvancementRequirements.allOf(listOf("dummy"))
         progress.update(requirements)
         progress.grantProgress("dummy")
+        if (!isRestore && !ignoreDuplicate) {
+            if (MongoDB.getPlayerAdvancements(serverPlayer.stringUUID).any { it.id == advancement.id }) {
+                restoreOrDuplicate = true
+            }
+        }
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                listOf(advancement.compile(hide = false, showInChat = !isRestore, showToast = !isRestore)),
+                listOf(advancement.compile(hide = false, showInChat = !restoreOrDuplicate, showToast = !restoreOrDuplicate)),
                 setOf(),
                 mapOf(advancement.id to progress)
             )
         )
         advancement.gustafAdvancement.unlocks.forEach {
             unlockAdvancement(serverPlayer, advancement(it)!!)
+        }
+        if (!restoreOrDuplicate) {
+            advancement.gustafAdvancement.rewards.forEach {
+                println(it)
+                val itemEntity = ItemEntity(serverPlayer.level(), serverPlayer.x, serverPlayer.y, serverPlayer.z, it)
+                serverPlayer.level().addFreshEntity(itemEntity)
+                itemEntity.setNoPickUpDelay()
+                itemEntity.setTarget(serverPlayer.uuid)
+
+                //serverPlayer.containerMenu.broadcastChanges()
+            }
         }
         MongoDB.awardAdvancement(serverPlayer.stringUUID, advancement)
     }

@@ -1,6 +1,7 @@
 package live.einfachgustaf.mods.smp
 
 import com.mojang.brigadier.arguments.StringArgumentType
+import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import live.einfachgustaf.mods.smp.advancement.Advancements
@@ -16,6 +17,7 @@ import net.minecraft.data.registries.VanillaRegistries
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Items
 import net.silkmc.silk.commands.command
+import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
@@ -27,7 +29,7 @@ fun initMain() {
 
 @Suppress("UNUSED_VARIABLE")
 fun initServer() {
-    // DB
+    // DATABASE
     MongoDB
     // ADVANCEMENTS
     val root = Advancements.createTab(
@@ -54,7 +56,7 @@ fun initServer() {
         x = 1.5f,
     )
     val claim = Advancements.register(
-        GustafAdvancement(Items.WHITE_BANNER.defaultInstance, literalText("Settler!"), literalText("Claim a chunk!"), AdvancementType.TASK, unlocks = setOf(Advancements.res("welcome/claim16"))),
+        GustafAdvancement(Items.WHITE_BANNER.defaultInstance, literalText("Settler!"), literalText("Claim a chunk!"), AdvancementType.TASK, unlocks = setOf(Advancements.res("welcome/claim16")), rewards = setOf(Items.BOW.defaultInstance)),
         "welcome/claim",
         welcome,
         x = 3f,
@@ -100,7 +102,9 @@ fun initServer() {
         argument<String>("advancement", StringArgumentType.greedyString()) { advancement ->
             suggestList { Advancements.advancements().map { it.id.toString() } }
             runs {
-                Advancements.awardAdvancement(source.playerOrException, Advancements.advancement(ResourceLocation(advancement.invoke(this)))!!)
+                mcCoroutineScope.launch {
+                    Advancements.awardAdvancement(source.playerOrException, Advancements.advancement(ResourceLocation(advancement.invoke(this@runs)))!!)
+                }
             }
         }
     }
