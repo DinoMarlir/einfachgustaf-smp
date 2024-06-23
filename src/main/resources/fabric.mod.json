@@ -17,7 +17,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "live.einfachgustaf.mods.smp.EntrypointKt::initServer"
+      "live.einfachgustaf.mods.smp.EntrypointKt::initMain"
     ],
     "server": [
       "live.einfachgustaf.mods.smp.EntrypointKt::initServer"
