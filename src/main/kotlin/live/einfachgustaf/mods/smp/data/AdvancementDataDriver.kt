@@ -5,6 +5,12 @@ import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.data.serialization.ItemStackSerializer
 import net.minecraft.world.item.ItemStack
 
+@Serializable
+data class PlayerAdvancementData(
+    val uuid: String,
+    val advancements: Set<String>
+)
+
 @Suppress("unused")
 @Serializable
 data class AdvancementData(

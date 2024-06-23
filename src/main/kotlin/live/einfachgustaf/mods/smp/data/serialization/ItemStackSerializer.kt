@@ -3,7 +3,6 @@ package live.einfachgustaf.mods.smp.data.serialization
 import com.mojang.brigadier.StringReader
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import net.minecraft.commands.Commands
 import net.minecraft.commands.arguments.item.ItemInput
 import net.minecraft.commands.arguments.item.ItemParser
 import net.minecraft.core.Holder
@@ -13,7 +12,7 @@ import net.minecraft.world.item.ItemStack
 import net.silkmc.silk.core.serialization.SilkSerializer
 
 class ItemStackSerializer : SilkSerializer<ItemStack>() {
-    private val context = Commands.createValidationContext(VanillaRegistries.createLookup())
+    private val context = VanillaRegistries.createLookup()
     private val itemParser = ItemParser(context)
 
     override fun deserialize(decoder: Decoder): ItemStack {

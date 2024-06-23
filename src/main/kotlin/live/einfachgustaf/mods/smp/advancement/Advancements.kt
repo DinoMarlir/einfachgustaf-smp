@@ -3,6 +3,7 @@ package live.einfachgustaf.mods.smp.advancement
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.LOGGER
+import live.einfachgustaf.mods.smp.data.db.MongoDB
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.ImpossibleTrigger
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
@@ -90,6 +91,9 @@ object Advancements {
             delay(100)
             advancements.filter { it.gustafAdvancement.isUnlocked }.forEach { unlockAdvancement(serverPlayer, it) }
             awardAdvancement(serverPlayer, root)
+            MongoDB.getPlayerAdvancements(serverPlayer.stringUUID).forEach {
+                awardAdvancement(serverPlayer, it)
+            }
         }
     }
 
@@ -123,6 +127,7 @@ object Advancements {
         advancement.gustafAdvancement.unlocks.forEach {
             unlockAdvancement(serverPlayer, advancement(it)!!)
         }
+        MongoDB.awardAdvancement(serverPlayer.stringUUID, advancement)
     }
 
     private fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {

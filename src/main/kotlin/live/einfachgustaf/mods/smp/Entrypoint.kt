@@ -6,6 +6,7 @@ import kotlinx.serialization.json.Json
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.data.ItemStackHolder
+import live.einfachgustaf.mods.smp.data.db.MongoDB
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.commands.Commands
@@ -26,6 +27,8 @@ fun initMain() {
 
 @Suppress("UNUSED_VARIABLE")
 fun initServer() {
+    // DB
+    MongoDB
     // ADVANCEMENTS
     val root = Advancements.createTab(
         GustafAdvancement(
@@ -111,5 +114,6 @@ fun initServer() {
     // EVENTS
     ServerPlayConnectionEvents.JOIN.register { player, _, _ ->
         Advancements.createAdvancements(player.player)
+
     }
 }
