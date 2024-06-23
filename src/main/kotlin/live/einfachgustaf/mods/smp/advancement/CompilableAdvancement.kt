@@ -18,6 +18,9 @@ data class CompilableAdvancement(
     val path: String
 ) {
 
+    /**
+     * Compiles the advancement to an mojang AdvancementHolder
+     */
     fun compile(hide: Boolean = false, showToast: Boolean = true, showInChat: Boolean = true): AdvancementHolder {
         val entry = Advancement.Builder.advancement()
             .display(DisplayInfo(

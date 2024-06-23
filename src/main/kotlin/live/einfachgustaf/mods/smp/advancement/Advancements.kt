@@ -17,36 +17,66 @@ object Advancements {
     private lateinit var root: CompilableAdvancement
     private val advancements = mutableListOf<CompilableAdvancement>()
 
+    /**
+     * @return all registered advancements in a pre-compiled state
+     */
     fun advancements(): List<CompilableAdvancement> {
         return advancements
     }
 
+    /**
+     * @param resourceLocation resource identifier to get advancement from
+     * @return advancement with the given identifier
+     */
     fun advancement(resourceLocation: ResourceLocation): CompilableAdvancement? {
         return advancements.firstOrNull { it.id == resourceLocation }
     }
 
+    /**
+     * @param path path of resource identifier to get advancement from
+     * @return advancement with the given identifier path
+     */
     @Suppress("unused")
     fun advancement(path: String): CompilableAdvancement? {
         return advancements.firstOrNull { it.id == res(path) }
     }
 
+    /**
+     * @param path path to create resource identifier from
+     * @return resource identifier from the given path
+     */
     fun res(path: String): ResourceLocation {
         return ResourceLocation("einfachgustaf:/root/$path")
     }
 
-    fun createTab(forAdvancement: GustafAdvancement): CompilableAdvancement {
-        val compiledAdvancement = CompilableAdvancement(forAdvancement, path = "")
+    /**
+     * @param gustafAdvancement the root advancement for the tab
+     * @return the registered root-advancement in a pre-compiled state
+     */
+    fun createTab(gustafAdvancement: GustafAdvancement): CompilableAdvancement {
+        val compiledAdvancement = CompilableAdvancement(gustafAdvancement, path = "")
         advancements += compiledAdvancement
         root = compiledAdvancement
         return compiledAdvancement
     }
 
-    fun register(forAdvancement: GustafAdvancement, path: String, parent: CompilableAdvancement? = null, x: Float = 0f, y: Float = 0f): CompilableAdvancement {
-        val compiledAdvancement = CompilableAdvancement(forAdvancement, x, y, parent?.id, path)
+    /**
+     * @param gustafAdvancement the advancement to create and register
+     * @param path the path of the resource identifier
+     * @param parent the parent of the advancement
+     * @param x x coordinate in the advancement screen
+     * @param y y coordinate in the advancement screen
+     * @return the registered advancement in a pre-compiled state
+     */
+    fun register(gustafAdvancement: GustafAdvancement, path: String, parent: CompilableAdvancement? = null, x: Float = 0f, y: Float = 0f): CompilableAdvancement {
+        val compiledAdvancement = CompilableAdvancement(gustafAdvancement, x, y, parent?.id, path)
         advancements += compiledAdvancement
         return compiledAdvancement
     }
 
+    /**
+     * @param serverPlayer player to create advancements for
+     */
     fun createAdvancements(serverPlayer: ServerPlayer) {
         LOGGER.debug("Creating advancements for ${serverPlayer.stringUUID}")
         serverPlayer.connection.send(
@@ -118,6 +148,10 @@ object Advancements {
         MongoDB.awardAdvancement(serverPlayer.stringUUID, advancement)
     }
 
+    /**
+     * @param x x location
+     * @param y y location
+     */
     fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {
         setLocation(x, y)
         return this
