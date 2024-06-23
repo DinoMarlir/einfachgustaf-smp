@@ -13,8 +13,8 @@ import java.util.*
 
 /**
  * Sends a notification toast to the player
- * @param content - Content of the notification
- * @param icon - Item to be shown as icon
+ * @param content Content of the notification
+ * @param icon Item to be shown as icon
  */
 fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack, type: AdvancementType) {
    val advancement = Advancement.Builder.advancement()

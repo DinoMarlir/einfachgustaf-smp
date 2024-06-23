@@ -5,28 +5,27 @@ import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.LOGGER
 import live.einfachgustaf.mods.smp.data.db.MongoDB
 import net.minecraft.advancements.*
-import net.minecraft.advancements.critereon.ImpossibleTrigger
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.silkmc.silk.core.task.mcCoroutineScope
-import java.util.*
 
 object Advancements {
     val DEFAULT_RESOURCE = ResourceLocation("textures/gui/advancements/backgrounds/adventure.png")
 
-    private lateinit var root: CompiledAdvancement
-    private val advancements = mutableListOf<CompiledAdvancement>()
+    private lateinit var root: CompilableAdvancement
+    private val advancements = mutableListOf<CompilableAdvancement>()
 
-    fun advancements(): List<CompiledAdvancement> {
+    fun advancements(): List<CompilableAdvancement> {
         return advancements
     }
 
-    fun advancement(resourceLocation: ResourceLocation): CompiledAdvancement? {
+    fun advancement(resourceLocation: ResourceLocation): CompilableAdvancement? {
         return advancements.firstOrNull { it.id == resourceLocation }
     }
 
-    fun advancement(path: String): CompiledAdvancement? {
+    @Suppress("unused")
+    fun advancement(path: String): CompilableAdvancement? {
         return advancements.firstOrNull { it.id == res(path) }
     }
 
@@ -34,44 +33,15 @@ object Advancements {
         return ResourceLocation("einfachgustaf:/root/$path")
     }
 
-    fun createTab(forAdvancement: GustafAdvancement): CompiledAdvancement {
-        val entry = Advancement.Builder.advancement()
-            .display(DisplayInfo(
-                forAdvancement.displayIcon,
-                forAdvancement.title,
-                forAdvancement.description,
-                Optional.of(forAdvancement.backgroundResource),
-                forAdvancement.type,
-                false,
-                true,
-                false
-            ))
-            .addCriterion("dummy", CriteriaTriggers.IMPOSSIBLE.createCriterion(ImpossibleTrigger.TriggerInstance()))
-        val advancementHolder = entry.build(res(""))
-        val compiledAdvancement = CompiledAdvancement(forAdvancement, advancementHolder)
+    fun createTab(forAdvancement: GustafAdvancement): CompilableAdvancement {
+        val compiledAdvancement = CompilableAdvancement(forAdvancement, path = "")
         advancements += compiledAdvancement
         root = compiledAdvancement
         return compiledAdvancement
     }
 
-    fun register(forAdvancement: GustafAdvancement, path: String, parent: CompiledAdvancement? = null, x: Float = 0f, y: Float = 0f): CompiledAdvancement {
-        val entry = Advancement.Builder.advancement()
-            .display(DisplayInfo(
-                forAdvancement.displayIcon,
-                forAdvancement.title,
-                forAdvancement.description,
-                Optional.of(forAdvancement.backgroundResource),
-                forAdvancement.type,
-                true,
-                true,
-                false
-            ).location(x, y))
-            .addCriterion("dummy", CriteriaTriggers.IMPOSSIBLE.createCriterion(ImpossibleTrigger.TriggerInstance()))
-        if (parent != null) {
-            entry.parent(parent.holder)
-        }
-        val advancementHolder = entry.build(res(path))
-        val compiledAdvancement = CompiledAdvancement(forAdvancement, advancementHolder)
+    fun register(forAdvancement: GustafAdvancement, path: String, parent: CompilableAdvancement? = null, x: Float = 0f, y: Float = 0f): CompilableAdvancement {
+        val compiledAdvancement = CompilableAdvancement(forAdvancement, x, y, parent?.id, path)
         advancements += compiledAdvancement
         return compiledAdvancement
     }
@@ -81,7 +51,7 @@ object Advancements {
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                advancements.map { it.holder },
+                advancements.map { it.compile() },
                 setOf(),
                 //advancements.associate { it.id to AdvancementProgress() }
                 mapOf()
@@ -90,28 +60,28 @@ object Advancements {
         mcCoroutineScope.launch {
             delay(100)
             advancements.filter { it.gustafAdvancement.isUnlocked }.forEach { unlockAdvancement(serverPlayer, it) }
-            awardAdvancement(serverPlayer, root)
+            awardAdvancement(serverPlayer, root, isRestore = true)
             MongoDB.getPlayerAdvancements(serverPlayer.stringUUID).forEach {
-                awardAdvancement(serverPlayer, it)
+                awardAdvancement(serverPlayer, it, isRestore = true)
             }
         }
     }
 
-    private fun unlockAdvancement(serverPlayer: ServerPlayer, advancement: CompiledAdvancement) {
+    private fun unlockAdvancement(serverPlayer: ServerPlayer, advancement: CompilableAdvancement) {
         val progress = AdvancementProgress()
         val requirements = AdvancementRequirements.allOf(listOf("dummy"))
         progress.update(requirements)
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                listOf(advancement.holder),
+                listOf(advancement.compile()),
                 setOf(),
                 mapOf(advancement.id to progress)
             )
         )
     }
 
-    fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompiledAdvancement) {
+    fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompilableAdvancement, isRestore: Boolean = false) {
         val progress = AdvancementProgress()
         val requirements = AdvancementRequirements.allOf(listOf("dummy"))
         progress.update(requirements)
@@ -119,7 +89,7 @@ object Advancements {
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                listOf(advancement.holder),
+                listOf(advancement.compile(hide = false, showInChat = !isRestore, showToast = !isRestore)),
                 setOf(),
                 mapOf(advancement.id to progress)
             )
@@ -130,7 +100,7 @@ object Advancements {
         MongoDB.awardAdvancement(serverPlayer.stringUUID, advancement)
     }
 
-    private fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {
+    fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {
         setLocation(x, y)
         return this
     }
