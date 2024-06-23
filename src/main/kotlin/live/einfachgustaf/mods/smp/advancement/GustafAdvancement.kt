@@ -18,6 +18,7 @@ data class GustafAdvancement(
     val description: MutableComponent,
     val type: AdvancementType,
     val backgroundResource: ResourceLocation = Advancements.DEFAULT_RESOURCE,
-    val unlocks: Set<ResourceLocation> = setOf()
+    val unlocks: Set<ResourceLocation> = setOf(),
+    val isUnlocked: Boolean = false
 ) {
 }

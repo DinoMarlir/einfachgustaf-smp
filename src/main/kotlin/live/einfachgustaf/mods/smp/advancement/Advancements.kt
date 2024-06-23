@@ -29,7 +29,7 @@ object Advancements {
         return advancements.firstOrNull { it.id == res(path) }
     }
 
-    private fun res(path: String): ResourceLocation {
+    fun res(path: String): ResourceLocation {
         return ResourceLocation("einfachgustaf:/root/$path")
     }
 
@@ -88,7 +88,7 @@ object Advancements {
         )
         mcCoroutineScope.launch {
             delay(100)
-            advancements.forEach { unlockAdvancement(serverPlayer, it) }
+            advancements.filter { it.gustafAdvancement.isUnlocked }.forEach { unlockAdvancement(serverPlayer, it) }
             awardAdvancement(serverPlayer, root)
         }
     }
@@ -120,9 +120,12 @@ object Advancements {
                 mapOf(advancement.id to progress)
             )
         )
+        advancement.gustafAdvancement.unlocks.forEach {
+            unlockAdvancement(serverPlayer, advancement(it)!!)
+        }
     }
 
-    fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {
+    private fun DisplayInfo.location(x: Float, y: Float): DisplayInfo {
         setLocation(x, y)
         return this
     }
