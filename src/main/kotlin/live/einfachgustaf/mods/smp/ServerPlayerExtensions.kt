@@ -54,5 +54,4 @@ fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack, type: Adva
         )
     )
     LOGGER.debug("Sent advancement deletion packet to $stringUUID")
-
 }

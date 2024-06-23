@@ -10,6 +10,7 @@ data class GustafAdvancement(
     val title: Component,
     val description: Component,
     val type: AdvancementType,
-    val backgroundResource: ResourceLocation = Advancements.DEFAULT_RESOURCE
+    val backgroundResource: ResourceLocation = Advancements.DEFAULT_RESOURCE,
+    val unlocks: Set<ResourceLocation> = setOf()
 ) {
 }

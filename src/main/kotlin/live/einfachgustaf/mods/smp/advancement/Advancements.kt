@@ -14,18 +14,18 @@ import java.util.*
 object Advancements {
     val DEFAULT_RESOURCE = ResourceLocation("textures/gui/advancements/backgrounds/adventure.png")
 
-    private lateinit var root: AdvancementHolder
-    private val advancements = mutableListOf<AdvancementHolder>()
+    private lateinit var root: CompiledAdvancement
+    private val advancements = mutableListOf<CompiledAdvancement>()
 
-    fun advancements(): List<AdvancementHolder> {
+    fun advancements(): List<CompiledAdvancement> {
         return advancements
     }
 
-    fun advancement(resourceLocation: ResourceLocation): AdvancementHolder? {
+    fun advancement(resourceLocation: ResourceLocation): CompiledAdvancement? {
         return advancements.firstOrNull { it.id == resourceLocation }
     }
 
-    fun advancement(path: String): AdvancementHolder? {
+    fun advancement(path: String): CompiledAdvancement? {
         return advancements.firstOrNull { it.id == res(path) }
     }
 
@@ -33,7 +33,7 @@ object Advancements {
         return ResourceLocation("einfachgustaf:/root/$path")
     }
 
-    fun createTab(forAdvancement: GustafAdvancement): AdvancementHolder {
+    fun createTab(forAdvancement: GustafAdvancement): CompiledAdvancement {
         val entry = Advancement.Builder.advancement()
             .display(DisplayInfo(
                 forAdvancement.displayIcon,
@@ -43,16 +43,17 @@ object Advancements {
                 forAdvancement.type,
                 false,
                 true,
-                true
+                false
             ))
             .addCriterion("dummy", CriteriaTriggers.IMPOSSIBLE.createCriterion(ImpossibleTrigger.TriggerInstance()))
         val advancementHolder = entry.build(res(""))
-        advancements += advancementHolder
-        root = advancementHolder
-        return advancementHolder
+        val compiledAdvancement = CompiledAdvancement(forAdvancement, advancementHolder)
+        advancements += compiledAdvancement
+        root = compiledAdvancement
+        return compiledAdvancement
     }
 
-    fun register(forAdvancement: GustafAdvancement, path: String, parent: AdvancementHolder? = null, x: Float = 0f, y: Float = 0f): AdvancementHolder {
+    fun register(forAdvancement: GustafAdvancement, path: String, parent: CompiledAdvancement? = null, x: Float = 0f, y: Float = 0f): CompiledAdvancement {
         val entry = Advancement.Builder.advancement()
             .display(DisplayInfo(
                 forAdvancement.displayIcon,
@@ -66,11 +67,12 @@ object Advancements {
             ).location(x, y))
             .addCriterion("dummy", CriteriaTriggers.IMPOSSIBLE.createCriterion(ImpossibleTrigger.TriggerInstance()))
         if (parent != null) {
-            entry.parent(parent)
+            entry.parent(parent.holder)
         }
         val advancementHolder = entry.build(res(path))
-        advancements += advancementHolder
-        return advancementHolder
+        val compiledAdvancement = CompiledAdvancement(forAdvancement, advancementHolder)
+        advancements += compiledAdvancement
+        return compiledAdvancement
     }
 
     fun createAdvancements(serverPlayer: ServerPlayer) {
@@ -78,19 +80,34 @@ object Advancements {
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                advancements,
+                advancements.map { it.holder },
                 setOf(),
                 //advancements.associate { it.id to AdvancementProgress() }
                 mapOf()
             )
         )
         mcCoroutineScope.launch {
-            delay(1000)
+            delay(100)
+            advancements.forEach { unlockAdvancement(serverPlayer, it) }
             awardAdvancement(serverPlayer, root)
         }
     }
 
-    fun awardAdvancement(serverPlayer: ServerPlayer, advancement: AdvancementHolder) {
+    private fun unlockAdvancement(serverPlayer: ServerPlayer, advancement: CompiledAdvancement) {
+        val progress = AdvancementProgress()
+        val requirements = AdvancementRequirements.allOf(listOf("dummy"))
+        progress.update(requirements)
+        serverPlayer.connection.send(
+            ClientboundUpdateAdvancementsPacket(
+                false,
+                listOf(advancement.holder),
+                setOf(),
+                mapOf(advancement.id to progress)
+            )
+        )
+    }
+
+    fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompiledAdvancement) {
         val progress = AdvancementProgress()
         val requirements = AdvancementRequirements.allOf(listOf("dummy"))
         progress.update(requirements)
@@ -98,7 +115,7 @@ object Advancements {
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                listOf(advancement),
+                listOf(advancement.holder),
                 setOf(),
                 mapOf(advancement.id to progress)
             )
