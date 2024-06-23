@@ -6,6 +6,6 @@
     "defaultRequire": 0
   },
   "mixins": [
-
+    "MixinPlayerChatMessage"
   ]
 }
