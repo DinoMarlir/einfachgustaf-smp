@@ -1,12 +1,15 @@
 package live.einfachgustaf.mods.smp
 
 import com.mojang.brigadier.arguments.StringArgumentType
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.UseSerializers
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
+import live.einfachgustaf.mods.smp.data.AdvancementData
+import live.einfachgustaf.mods.smp.data.AdvancementHolder
 import live.einfachgustaf.mods.smp.data.ItemStackHolder
 import live.einfachgustaf.mods.smp.data.serialization.ItemStackSerializer
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
@@ -27,6 +30,14 @@ val LOGGER: Logger = LogManager.getLogger("smp")
 fun initMain() {
 }
 
+@OptIn(ExperimentalSerializationApi::class)
+val JSON = Json {
+    prettyPrint = true
+    prettyPrintIndent = "  "
+    isLenient = true
+    ignoreUnknownKeys = true
+}
+
 fun initServer() {
     // ADVANCEMENTS
     val root = Advancements.createTab(
@@ -38,7 +49,7 @@ fun initServer() {
         root,
         x = 1.5f
     )
-    Advancements.register(
+    val hello = Advancements.register(
         GustafAdvancement(Items.OAK_BOAT.defaultInstance, literalText("Say hello!"), literalText("Introduce yourself in the chat!"), AdvancementType.GOAL),
         "welcome/hello",
         welcome,
@@ -84,6 +95,6 @@ fun initServer() {
     }
     // EVENTS
     ServerPlayConnectionEvents.JOIN.register { player, _, _ ->
-        Advancements.createAdvancements(player.player) //TODO gets called twice?
+        Advancements.createAdvancements(player.player)
     }
 }

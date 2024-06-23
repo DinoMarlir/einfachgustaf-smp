@@ -76,7 +76,7 @@ object Advancements {
     }
 
     fun createAdvancements(serverPlayer: ServerPlayer) {
-        LOGGER.info("create")
+        LOGGER.debug("Creating advancements for ${serverPlayer.stringUUID}")
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,

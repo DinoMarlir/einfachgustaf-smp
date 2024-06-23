@@ -7,7 +7,14 @@ import net.minecraft.world.item.ItemStack
 
 @Serializable
 data class AdvancementData(
-    val root: GustafAdvancement
+    val root: GustafAdvancement,
+    val advancements: Set<AdvancementHolder>
+)
+
+@Serializable
+data class AdvancementHolder(
+    val path: String,
+    val advancement: GustafAdvancement
 )
 
 @Serializable
