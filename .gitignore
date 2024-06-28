@@ -4,3 +4,4 @@ run
 build
 *.launch
 *.DS_Store
+.env

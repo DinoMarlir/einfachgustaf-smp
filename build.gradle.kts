@@ -4,7 +4,7 @@ val silkVersion = "1.10.5"
 plugins {
     kotlin("jvm") version "2.0.0"
     kotlin("plugin.serialization") version "2.0.0"
-    id("fabric-loom") version "1.6-SNAPSHOT"
+    id("fabric-loom") version "1.7-SNAPSHOT"
 }
 
 group = "live.einfachgustaf"
@@ -19,14 +19,18 @@ dependencies {
     mappings(loom.officialMojangMappings())
 
     modImplementation("net.fabricmc:fabric-loader:0.15.10")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.97.8+1.20.6")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.100.2+1.20.6")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.10.19+kotlin.1.9.23")
 
     modImplementation("net.silkmc:silk-core:$silkVersion")
     modImplementation("net.silkmc:silk-commands:$silkVersion")
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
-    include(implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.7.0"))
+    include(implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")!!)
+
+    // Database
+    include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.0")!!)
+    include(implementation("org.mongodb:bson-kotlinx:5.1.0")!!)
 }
 
 tasks {
@@ -45,8 +49,4 @@ tasks {
         inputs.properties(properties)
         filesMatching("fabric.mod.json") { expand(properties) }
     }
-}
-
-loom {
-    serverOnlyMinecraftJar()
 }

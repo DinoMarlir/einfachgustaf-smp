@@ -17,16 +17,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      {
-        "adapter": "kotlin",
-        "value": "live.einfachgustaf.mods.smp.Entrypoint"
-      }
+      "live.einfachgustaf.mods.smp.EntrypointKt::initMain"
     ],
     "server": [
-      {
-        "adapter": "kotlin",
-        "value": "live.einfachgustaf.mods.smp.Entrypoint"
-      }
+      "live.einfachgustaf.mods.smp.EntrypointKt::initServer"
     ]
   },
   "mixins": [
