@@ -38,7 +38,7 @@ fun initServer() {
             literalText("EinfachGustaf"),
             literalText("Test Advancements"),
             AdvancementType.TASK,
-            ResourceLocation("textures/block/melon_side.png"),
+            ResourceLocation.withDefaultNamespace("textures/block/melon_side.png"),
             isUnlocked = true
         )
     )
@@ -103,7 +103,7 @@ fun initServer() {
             suggestList { Advancements.advancements().map { it.id.toString() } }
             runs {
                 mcCoroutineScope.launch {
-                    Advancements.awardAdvancement(source.playerOrException, Advancements.advancement(ResourceLocation(advancement.invoke(this@runs)))!!)
+                    Advancements.awardAdvancement(source.playerOrException, Advancements.advancement(ResourceLocation.parse(advancement.invoke(this@runs)))!!)
                 }
             }
         }

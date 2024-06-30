@@ -29,7 +29,7 @@ fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack, type: Adva
            true
         ))
         .addCriterion("dummy", PlayerTrigger.TriggerInstance.tick())
-        .build(ResourceLocation("einfachgustaf:/root/dummy"))
+        .build(ResourceLocation.parse("einfachgustaf:/root/dummy"))
 
     val progress = AdvancementProgress()
     val requirements = AdvancementRequirements.allOf(listOf("dummy"))
