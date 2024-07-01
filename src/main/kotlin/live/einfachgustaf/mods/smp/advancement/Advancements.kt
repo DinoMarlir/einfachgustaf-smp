@@ -12,7 +12,7 @@ import net.minecraft.world.entity.item.ItemEntity
 import net.silkmc.silk.core.task.mcCoroutineScope
 
 object Advancements {
-    val DEFAULT_RESOURCE = ResourceLocation("textures/gui/advancements/backgrounds/adventure.png")
+    val DEFAULT_RESOURCE: ResourceLocation = ResourceLocation.withDefaultNamespace("textures/gui/advancements/backgrounds/adventure.png")
 
     private lateinit var root: CompilableAdvancement
     private val advancements = mutableListOf<CompilableAdvancement>()
@@ -46,7 +46,7 @@ object Advancements {
      * @return resource identifier from the given path
      */
     fun res(path: String): ResourceLocation {
-        return ResourceLocation("einfachgustaf:/root/$path")
+        return ResourceLocation.parse("einfachgustaf:/root/$path")
     }
 
     /**

@@ -35,7 +35,7 @@ object MongoDB {
 
     suspend fun getPlayerAdvancements(uuid: String): Set<CompilableAdvancement> {
         val player = advancementsCollection.find(Filters.eq("uuid", uuid)).firstOrNull() ?: return emptySet()
-        return player.advancements.mapNotNull { Advancements.advancement(ResourceLocation(it)) }.toSet()
+        return player.advancements.mapNotNull { Advancements.advancement(ResourceLocation.parse(it)) }.toSet()
     }
 
     private suspend fun upsert(uuid: String, data: PlayerAdvancementData) {

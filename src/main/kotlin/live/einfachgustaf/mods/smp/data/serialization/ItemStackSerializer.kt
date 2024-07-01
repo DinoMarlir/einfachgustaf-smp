@@ -22,7 +22,7 @@ class ItemStackSerializer : SilkSerializer<ItemStack>() {
     }
 
     override fun serialize(encoder: Encoder, value: ItemStack) {
-        val itemInput = ItemInput(Holder.direct(value.item), value.components)
+        val itemInput = ItemInput(Holder.direct(value.item), value.componentsPatch)
         encoder.encodeString(itemInput.serialize(context))
     }
 }
