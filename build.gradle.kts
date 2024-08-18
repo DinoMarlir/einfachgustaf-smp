@@ -34,12 +34,6 @@ dependencies {
 }
 
 tasks {
-    compileKotlin {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjdk-release=$javaVersion", "-Xskip-prerelease-check")
-            jvmTarget = "$javaVersion"
-        }
-    }
     compileJava {
         options.encoding = "UTF-8"
         options.release.set(javaVersion)
@@ -48,5 +42,12 @@ tasks {
         val properties = mapOf("version" to project.version)
         inputs.properties(properties)
         filesMatching("fabric.mod.json") { expand(properties) }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs = listOf("-Xjdk-release=$javaVersion", "-Xskip-prerelease-check")
+        jvmToolchain(javaVersion)
     }
 }
