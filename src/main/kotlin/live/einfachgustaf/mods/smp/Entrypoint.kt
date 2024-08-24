@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import live.einfachgustaf.mods.smp.advancement.AdvancementRegistry
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.data.ItemStackHolder
@@ -31,6 +32,9 @@ fun initMain() {
 fun initServer() {
     // DATABASE
     MongoDB
+
+    // ADVANCEMENTS
+    AdvancementRegistry
 
     // COMMANDS
     val context = Commands.createValidationContext(VanillaRegistries.createLookup())
@@ -74,6 +78,5 @@ fun initServer() {
     // EVENTS
     ServerPlayConnectionEvents.JOIN.register { player, _, _ ->
         Advancements.createAdvancements(player.player)
-
     }
 }
