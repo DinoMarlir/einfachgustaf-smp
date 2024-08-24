@@ -17,7 +17,7 @@ import net.silkmc.silk.core.text.literalText
 object ALittleGift {
     val itemPlayerMap = mutableMapOf<ItemStack, ServerPlayer>()
 
-    fun register() {
+    fun register(xPos: Float) {
         val advancement = Advancements.register(
             GustafAdvancement(
                 Items.HONEYCOMB.defaultInstance,
@@ -29,7 +29,7 @@ object ALittleGift {
             ),
             "alittlegift",
             beginnerRoot,
-            x = 1.5f * 2
+            x = xPos
         )
 
         subscribeToEvent<PlayerDropItemEvent> {

@@ -13,7 +13,7 @@ import net.silkmc.silk.core.text.literalText
 
 object TheBeginning {
 
-    fun register() {
+    fun register(xPos: Float) {
         val advancement = Advancements.register(
             GustafAdvancement(
                 Items.HONEYCOMB.defaultInstance,
@@ -30,7 +30,7 @@ object TheBeginning {
             ),
             "thebeginning",
             beginnerRoot,
-            x = 1.5f
+            x = xPos
         )
 
         ServerPlayConnectionEvents.JOIN.register { event, _, _ ->

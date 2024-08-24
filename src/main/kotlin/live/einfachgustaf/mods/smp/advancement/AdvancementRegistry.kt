@@ -5,8 +5,18 @@ import live.einfachgustaf.mods.smp.advancement.impl.beginner.TheBeginning
 
 object AdvancementRegistry {
 
+    val functions = setOf(
+        TheBeginning::register,
+        ALittleGift::register
+    )
+
     init {
-        TheBeginning.register()
-        ALittleGift.register()
+        val multiplier = 1.5F
+
+        for (i in 1..functions.size) {
+            functions.forEach { function ->
+                function.invoke(multiplier * i)
+            }
+        }
     }
 }
