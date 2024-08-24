@@ -6,18 +6,19 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.CompilableAdvancement
+import live.einfachgustaf.mods.smp.data.AbstractDataDriver
 import live.einfachgustaf.mods.smp.data.PlayerAdvancementData
 import net.minecraft.resources.ResourceLocation
 import net.silkmc.silk.core.task.mcCoroutineScope
 
 @Suppress("unused")
-object MongoDB {
+object MongoDB: AbstractDataDriver() {
 
     private val mongoClient = MongoClient.create(System.getenv("MONGODB_URL"))
     private val database = mongoClient.getDatabase(System.getenv("MONGODB_DATABASE"))
     private val advancementsCollection = database.getCollection<PlayerAdvancementData>("PLAYER_ADVANCEMENTS")
 
-    fun awardAdvancement(uuid: String, advancement: CompilableAdvancement) {
+    override fun awardAdvancement(uuid: String, advancement: CompilableAdvancement) {
         mcCoroutineScope.launch {
             val advancements = getPlayerAdvancements(uuid).toMutableSet()
             advancements += advancement
@@ -25,7 +26,7 @@ object MongoDB {
         }
     }
 
-    fun revokeAdvancement(uuid: String, advancement: CompilableAdvancement) {
+    override fun revokeAdvancement(uuid: String, advancement: CompilableAdvancement) {
         mcCoroutineScope.launch {
             val advancements = getPlayerAdvancements(uuid).toMutableSet()
             advancements -= advancement
@@ -33,7 +34,7 @@ object MongoDB {
         }
     }
 
-    suspend fun getPlayerAdvancements(uuid: String): Set<CompilableAdvancement> {
+    override suspend fun getPlayerAdvancements(uuid: String): Set<CompilableAdvancement> {
         val player = advancementsCollection.find(Filters.eq("uuid", uuid)).firstOrNull() ?: return emptySet()
         return player.advancements.mapNotNull { Advancements.advancement(ResourceLocation.parse(it)) }.toSet()
     }
