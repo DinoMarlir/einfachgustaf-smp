@@ -7,6 +7,7 @@ import live.einfachgustaf.mods.smp.advancement.impl.beginnerRoot
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.world.item.Items
+import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
@@ -20,7 +21,12 @@ object TheBeginning {
                 literalText("Es freut uns, dass du hier bist!!"),
                 AdvancementType.TASK,
                 isUnlocked = true,
-                rewards = setOf(Items.STONE_SWORD.defaultInstance)
+                rewards = setOf(
+                    Items.STONE_SWORD.defaultInstance,
+                    itemStack(Items.COOKED_BEEF) {
+                        count = 16
+                    }
+                )
             ),
             "thebeginning",
             beginnerRoot,
