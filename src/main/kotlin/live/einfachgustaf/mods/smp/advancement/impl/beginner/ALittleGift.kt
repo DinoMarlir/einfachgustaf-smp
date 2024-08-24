@@ -11,8 +11,8 @@ import net.minecraft.advancements.AdvancementType
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.silkmc.silk.core.text.literalText
 import net.silkmc.silk.core.task.mcCoroutineScope
+import net.silkmc.silk.core.text.literalText
 
 object ALittleGift {
     val itemPlayerMap = mutableMapOf<ItemStack, ServerPlayer>()

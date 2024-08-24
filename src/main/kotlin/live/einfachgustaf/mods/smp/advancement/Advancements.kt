@@ -4,7 +4,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.LOGGER
 import live.einfachgustaf.mods.smp.data.db.MongoDB
-import net.minecraft.advancements.*
+import net.minecraft.advancements.AdvancementProgress
+import net.minecraft.advancements.AdvancementRequirements
+import net.minecraft.advancements.DisplayInfo
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
