@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
-import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
@@ -39,6 +38,7 @@ object GettingWood {
                     Advancements.awardAdvancement(player, advancement)
                 }
             }
+            true
         }
     }
 }
