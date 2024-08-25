@@ -11,7 +11,6 @@ import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.item.ItemEntity
-import net.minecraft.world.entity.player.Player
 import net.silkmc.silk.core.task.mcCoroutineScope
 
 object Advancements {
@@ -115,7 +114,7 @@ object Advancements {
         )
     }
 
-    suspend fun awardAdvancement(serverPlayer: Player, advancement: CompilableAdvancement, isRestore: Boolean = false, ignoreDuplicate: Boolean = false) {
+    suspend fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompilableAdvancement, isRestore: Boolean = false, ignoreDuplicate: Boolean = false) {
         var restoreOrDuplicate = isRestore
         val progress = AdvancementProgress()
         val requirements = AdvancementRequirements.allOf(listOf("dummy"))
