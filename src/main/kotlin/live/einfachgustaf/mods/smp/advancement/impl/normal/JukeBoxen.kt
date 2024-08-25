@@ -4,8 +4,10 @@ import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.advancement.impl.beginnerRoot
+import live.einfachgustaf.mods.smp.extensions.asServerPlayer
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback
 import net.minecraft.advancements.AdvancementType
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
@@ -31,15 +33,17 @@ object JukeBoxen {
             x = 1.5f
         )
 
-        AttackEntityCallback.EVENT.register { player, world, hand, entity, hitResult ->
-            if (entity is Player && player.getItemInHand(hand).item == Blocks.JUKEBOX.asItem()) {
+        AttackEntityCallback.EVENT.register { player, _, hand, entity, _ ->
+            if (entity is Player && !player.isSpectator && player.getItemInHand(hand).item == Blocks.JUKEBOX.asItem()) {
 
-                mcCoroutineScope.launch {
-                    Advancements.awardAdvancement(player, advancement)
+                player.asServerPlayer()?.let { serverPlayer ->
+                    mcCoroutineScope.launch {
+                        Advancements.awardAdvancement(serverPlayer, advancement)
+                    }
                 }
             }
 
-            ActionResult.PASS
+            InteractionResult.PASS
         }
     }
 }
