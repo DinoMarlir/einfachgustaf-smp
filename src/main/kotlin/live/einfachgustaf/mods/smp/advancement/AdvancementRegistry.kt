@@ -8,5 +8,9 @@ object AdvancementRegistry {
     init {
         TheBeginning.register()
         ALittleGift.register()
+        WhatTimeIsIt.register()
+        GettingWood.register()
+        JukeBoxen.register()
+        
     }
 }
