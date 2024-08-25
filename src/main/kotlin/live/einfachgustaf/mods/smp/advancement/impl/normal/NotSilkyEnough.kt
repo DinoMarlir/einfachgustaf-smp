@@ -4,9 +4,8 @@ import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.advancement.impl.beginnerRoot
-import live.einfachgustaf.mods.smp.event.BreakBlockEvent
 import live.einfachgustaf.mods.smp.extensions.asServerPlayer
-import me.obsilabor.alert.kotlin.subscribeToEvent
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.item.Items
@@ -44,12 +43,12 @@ object NotSilkyEnough {
             y = 2 * 1.5f
         )
 
-        subscribeToEvent<BreakBlockEvent> { event ->
-            val itemHasSilkTouch = EnchantmentHelper.getEnchantmentsForCrafting(event.player.mainHandItem).keySet()
+        PlayerBlockBreakEvents.AFTER.register { _, player, _, itemStack, _ ->
+            val itemHasSilkTouch = EnchantmentHelper.getEnchantmentsForCrafting(player.mainHandItem).keySet()
                 .any { it.`is`(Enchantments.SILK_TOUCH) }
-            if (event.block == Blocks.SPAWNER && itemHasSilkTouch) {
+            if (itemStack == Blocks.SPAWNER && itemHasSilkTouch) {
                 mcCoroutineScope.launch {
-                    Advancements.awardAdvancement(event.player.asServerPlayer() ?: return@launch, advancement)
+                    Advancements.awardAdvancement(player.asServerPlayer() ?: return@launch, advancement)
                 }
             }
         }
