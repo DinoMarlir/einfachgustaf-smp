@@ -6,8 +6,8 @@
     "defaultRequire": 0
   },
   "mixins": [
-    "MixinResultSlot",
     "MixinInventory",
+    "MixinResultSlot",
     "MixinServerPlayer"
   ]
 }
