@@ -1,7 +1,9 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DinoMarlir/einfachgustaf-smp/main/.github/img/einfachgustaf-logo.png", height=256, width=256 />
+  <img src="https://raw.githubusercontent.com/DinoMarlir/einfachgustaf-smp/main/.github/img/einfachgustaf-logo.png", height=512, width=512 />
 </p>
-<a href="https://discord.gg/qCZw9UeV7h"><img src="https://img.shields.io/discord/1068818982485901432?color=5865F2&logo=discord&logoColor=white" alt="Discord server" /></a>
+<p align="center">
+  <a href="https://discord.gg/qCZw9UeV7h"><img src="https://img.shields.io/discord/1068818982485901432?color=5865F2&logo=discord&logoColor=white" alt="Discord server" />
+</p>
 
 # 🦈 EinfachGustaf SMP
 
