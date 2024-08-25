@@ -31,6 +31,10 @@ dependencies {
     // Database
     include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.0")!!)
     include(implementation("org.mongodb:bson-kotlinx:5.1.0")!!)
+
+    // Discord
+    include(implementation("net.dv8tion:JDA:5.1.0")!!)
+    include(implementation("club.minnced:jda-ktx:0.12.0")!!)
 }
 
 tasks {
