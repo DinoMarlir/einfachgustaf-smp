@@ -20,7 +20,7 @@ object ALittleGift {
     fun register() {
         val advancement = Advancements.register(
             GustafAdvancement(
-                Items.HONEYCOMB.defaultInstance,
+                Items.RED_CANDLE.defaultInstance,
                 literalText("Ein kleines Geschenk"),
                 literalText("Gib einem anderen Spieler ein Geschenk"),
                 AdvancementType.TASK,
