@@ -55,7 +55,7 @@ object Advancements {
      * @param gustafAdvancement the root advancement for the tab
      * @return the registered root-advancement in a pre-compiled state
      */
-    fun createTab(path: String = "", gustafAdvancement: GustafAdvancement): CompilableAdvancement {
+    fun createTab(gustafAdvancement: GustafAdvancement, path: String = ""): CompilableAdvancement {
         val compiledAdvancement = CompilableAdvancement(gustafAdvancement, path = path)
         advancements += compiledAdvancement
         root = compiledAdvancement
