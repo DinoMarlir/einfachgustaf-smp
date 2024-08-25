@@ -8,7 +8,6 @@ import live.einfachgustaf.mods.smp.advancement.impl.beginnerRoot
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.world.item.Items
-import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
