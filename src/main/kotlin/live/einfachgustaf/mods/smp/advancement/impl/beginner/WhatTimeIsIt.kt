@@ -38,7 +38,8 @@ object WhatTimeIsIt {
             ),
             "whattimeisit",
             beginnerRoot,
-            x = 1.5f
+            x = 2 * 1.5f,
+            y = 1.5f
         )
 
         collectionEvents(advancement)

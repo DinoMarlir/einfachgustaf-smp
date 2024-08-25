@@ -14,7 +14,8 @@ import net.minecraft.world.entity.item.ItemEntity
 import net.silkmc.silk.core.task.mcCoroutineScope
 
 object Advancements {
-    val DEFAULT_RESOURCE: ResourceLocation = ResourceLocation.withDefaultNamespace("textures/gui/advancements/backgrounds/adventure.png")
+    val DEFAULT_RESOURCE: ResourceLocation =
+        ResourceLocation.withDefaultNamespace("textures/gui/advancements/backgrounds/adventure.png")
 
     private lateinit var root: CompilableAdvancement
     private val advancements = mutableListOf<CompilableAdvancement>()
@@ -70,7 +71,13 @@ object Advancements {
      * @param y y coordinate in the advancement screen
      * @return the registered advancement in a pre-compiled state
      */
-    fun register(gustafAdvancement: GustafAdvancement, path: String, parent: CompilableAdvancement? = null, x: Float = 0f, y: Float = 0f): CompilableAdvancement {
+    fun register(
+        gustafAdvancement: GustafAdvancement,
+        path: String,
+        parent: CompilableAdvancement? = null,
+        x: Float = 0f,
+        y: Float = 0f
+    ): CompilableAdvancement {
         val compiledAdvancement = CompilableAdvancement(gustafAdvancement, x, y, parent?.id, path)
         advancements += compiledAdvancement
         return compiledAdvancement
@@ -114,7 +121,12 @@ object Advancements {
         )
     }
 
-    suspend fun awardAdvancement(serverPlayer: ServerPlayer, advancement: CompilableAdvancement, isRestore: Boolean = false, ignoreDuplicate: Boolean = false) {
+    suspend fun awardAdvancement(
+        serverPlayer: ServerPlayer,
+        advancement: CompilableAdvancement,
+        isRestore: Boolean = false,
+        ignoreDuplicate: Boolean = false
+    ) {
         var restoreOrDuplicate = isRestore
         val progress = AdvancementProgress()
         val requirements = AdvancementRequirements.allOf(listOf("dummy"))
@@ -128,7 +140,13 @@ object Advancements {
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
                 false,
-                listOf(advancement.compile(hide = false, showInChat = !restoreOrDuplicate, showToast = !restoreOrDuplicate)),
+                listOf(
+                    advancement.compile(
+                        hide = false,
+                        showInChat = !restoreOrDuplicate,
+                        showToast = !restoreOrDuplicate
+                    )
+                ),
                 setOf(),
                 mapOf(advancement.id to progress)
             )

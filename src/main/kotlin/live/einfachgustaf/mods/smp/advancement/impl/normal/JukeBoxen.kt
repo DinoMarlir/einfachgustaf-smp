@@ -30,7 +30,8 @@ object JukeBoxen {
             ),
             "jukeboxen",
             beginnerRoot,
-            x = 1.5f
+            x = 2 * 1.5f,
+            y = 3 * 1.5f
         )
 
         AttackEntityCallback.EVENT.register { player, _, hand, entity, _ ->

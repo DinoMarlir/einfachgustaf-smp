@@ -1,4 +1,5 @@
 @file:UseSerializers(ResourceLocationSerializer::class, ItemStackSerializer::class, ComponentSerializer::class)
+
 package live.einfachgustaf.mods.smp.advancement
 
 import kotlinx.serialization.Serializable
