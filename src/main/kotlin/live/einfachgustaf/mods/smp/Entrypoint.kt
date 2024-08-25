@@ -8,6 +8,7 @@ import live.einfachgustaf.mods.smp.advancement.AdvancementRegistry
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.data.ItemStackHolder
 import live.einfachgustaf.mods.smp.data.db.MongoDB
+import live.einfachgustaf.mods.smp.discord.DiscordBot
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.commands.Commands
@@ -33,6 +34,9 @@ fun initServer() {
 
     // ADVANCEMENTS
     AdvancementRegistry
+
+    // Discord Bot
+    DiscordBot
 
     // COMMANDS
     val context = Commands.createValidationContext(VanillaRegistries.createLookup())
