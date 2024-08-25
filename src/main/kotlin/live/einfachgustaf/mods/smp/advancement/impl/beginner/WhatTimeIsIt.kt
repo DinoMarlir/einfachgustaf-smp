@@ -42,6 +42,7 @@ object WhatTimeIsIt {
         )
 
         collectionEvents(advancement)
+        removeEvents()
     }
 
     private fun collectionEvents(advancement: CompilableAdvancement) {
