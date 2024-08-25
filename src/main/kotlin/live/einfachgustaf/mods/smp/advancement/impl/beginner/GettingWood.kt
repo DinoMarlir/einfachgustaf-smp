@@ -28,7 +28,8 @@ object GettingWood {
             ),
             "gettingwood",
             beginnerRoot,
-            x = 1.5f
+            x = 1.5f,
+            y = 1.5f
         )
 
         PlayerBlockBreakEvents.BEFORE.register { world, player, pos, state, blockEntity ->
