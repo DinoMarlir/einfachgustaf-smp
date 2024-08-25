@@ -39,7 +39,7 @@ object JukeBoxen {
                 }
             }
 
-            ActionResult.PASS
+
         }
     }
 }
