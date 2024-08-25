@@ -22,7 +22,7 @@ public class MixinResultSlot {
     private boolean wasQuickCrafted = false;
 
     @Inject(at = @At("HEAD"), method = "onTake")
-    public void injectSlotsChanged(Player player, ItemStack itemStack, CallbackInfo ci) {
+    public void injectOnTake(Player player, ItemStack itemStack, CallbackInfo ci) {
         if (!wasQuickCrafted)
             EventManager.callEvent(new PlayerCraftItemEvent(player, itemStack));
 
