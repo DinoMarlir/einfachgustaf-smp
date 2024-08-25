@@ -29,7 +29,8 @@ object ATrueGustaf {
             ),
             "atruegustaf",
             beginnerRoot,
-            x = 1.5f
+            x = 1.5f,
+            y = 3 * 1.5f
         )
 
         subscribeToEvent<PlayerCraftItemEvent> {

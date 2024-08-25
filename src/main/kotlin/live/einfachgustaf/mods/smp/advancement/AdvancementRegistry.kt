@@ -7,6 +7,7 @@ import live.einfachgustaf.mods.smp.advancement.impl.beginner.WhatTimeIsIt
 import live.einfachgustaf.mods.smp.advancement.impl.challenging.AreYouUndead
 import live.einfachgustaf.mods.smp.advancement.impl.normal.ATrueGustaf
 import live.einfachgustaf.mods.smp.advancement.impl.normal.JukeBoxen
+import live.einfachgustaf.mods.smp.advancement.impl.normal.NotSilkyEnough
 
 object AdvancementRegistry {
 
@@ -18,5 +19,6 @@ object AdvancementRegistry {
         ATrueGustaf.register()
         JukeBoxen.register()
         AreYouUndead.register()
+        NotSilkyEnough.register()
     }
 }
