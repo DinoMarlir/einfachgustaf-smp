@@ -17,6 +17,9 @@ import net.minecraft.commands.arguments.item.ItemInput
 import net.minecraft.data.registries.VanillaRegistries
 import net.minecraft.resources.ResourceLocation
 import net.silkmc.silk.commands.command
+import net.silkmc.silk.core.annotations.ExperimentalSilkApi
+import net.silkmc.silk.core.event.Events
+import net.silkmc.silk.core.event.Server
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 import org.apache.logging.log4j.LogManager
@@ -27,13 +30,9 @@ val LOGGER: Logger = LogManager.getLogger("smp")
 fun initMain() {
 }
 
-@Suppress("UNUSED_VARIABLE")
 fun initServer() {
     // DATABASE
     MongoDB
-
-    // ADVANCEMENTS
-    AdvancementRegistry
 
     // Discord Bot
     DiscordBot
@@ -81,4 +80,12 @@ fun initServer() {
     ServerPlayConnectionEvents.JOIN.register { player, _, _ ->
         Advancements.createAdvancements(player.player)
     }
+
+    postStart()
+}
+
+@OptIn(ExperimentalSilkApi::class)
+fun postStart() = Events.Server.postStart.listen {
+    // ADVANCEMENTS
+    AdvancementRegistry
 }
