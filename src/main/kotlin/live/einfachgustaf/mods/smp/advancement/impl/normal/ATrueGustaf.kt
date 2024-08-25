@@ -1,14 +1,15 @@
-package live.einfachgustaf.mods.smp.advancement.impl.beginner
+package live.einfachgustaf.mods.smp.advancement.impl.normal
 
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.advancement.impl.beginnerRoot
-import net.fabricmc.fabric.api.event.player.PlayerCraftsItemCallback
+import live.einfachgustaf.mods.smp.event.PlayerCraftItemEvent
+import live.einfachgustaf.mods.smp.extensions.asServerPlayer
+import me.obsilabor.alert.kotlin.subscribeToEvent
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
-import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
@@ -31,19 +32,12 @@ object ATrueGustaf {
             x = 1.5f
         )
 
-        // Ereignis-Listener für das Crafting-Event
-        PlayerCraftsItemCallback.EVENT.register { player, craftedStack, craftingInventory ->
-            // Prüfe, ob das gecraftete Item eine Jukebox ist
-            if (craftedStack.item == Blocks.JUKEBOX.asItem()) {
-
-                // Vergib das Advancement
+        subscribeToEvent<PlayerCraftItemEvent> {
+            if (it.item == Blocks.JUKEBOX.asItem().defaultInstance) {
                 mcCoroutineScope.launch {
-                    Advancements.awardAdvancement(player, advancement)
+                    Advancements.awardAdvancement(it.player.asServerPlayer() ?: return@launch, advancement)
                 }
             }
-
-            // Rückgabewert für das Event (standardmäßig KEIN Problem, um andere Event-Listener nicht zu stören)
-            ActionResult.PASS
         }
     }
 }
