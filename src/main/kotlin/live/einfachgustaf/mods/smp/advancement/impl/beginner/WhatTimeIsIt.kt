@@ -83,7 +83,7 @@ object WhatTimeIsIt {
         return job
     }
 
-    fun cancelJobForPlayer(player: ServerPlayer) {
+    private fun cancelJobForPlayer(player: ServerPlayer) {
         val job = playerJobMap[player] ?: return
         job.cancel()
         playerJobMap.remove(player)
