@@ -28,7 +28,7 @@ object MoreSmoke {
             ),
             "moresmoke",
             beginnerRoot,
-            x = 1.5f * 4,
+            x = 1.5f * 2,
             y = 1.5f * 2
         )
 
