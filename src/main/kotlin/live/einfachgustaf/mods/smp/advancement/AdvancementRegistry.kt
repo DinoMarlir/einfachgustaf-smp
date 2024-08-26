@@ -18,5 +18,6 @@ object AdvancementRegistry {
         DoABarrelroll.register()
         MasterOfExplosion.register()
         MoreSmoke.register()
+        VillageAssassin.register()
     }
 }
