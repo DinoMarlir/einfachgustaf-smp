@@ -2,10 +2,7 @@ package live.einfachgustaf.mods.smp.advancement
 
 import live.einfachgustaf.mods.smp.advancement.impl.beginner.*
 import live.einfachgustaf.mods.smp.advancement.impl.challenging.AreYouUndead
-import live.einfachgustaf.mods.smp.advancement.impl.normal.ATrueGustaf
-import live.einfachgustaf.mods.smp.advancement.impl.normal.JukeBoxen
-import live.einfachgustaf.mods.smp.advancement.impl.normal.MasterOfExplosion
-import live.einfachgustaf.mods.smp.advancement.impl.normal.NotSilkyEnough
+import live.einfachgustaf.mods.smp.advancement.impl.normal.*
 
 object AdvancementRegistry {
 
@@ -20,5 +17,6 @@ object AdvancementRegistry {
         NotSilkyEnough.register()
         DoABarrelroll.register()
         MasterOfExplosion.register()
+        MoreSmoke.register()
     }
 }
