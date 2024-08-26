@@ -66,7 +66,7 @@ object MasterOfExplosion {
             ),
             "masterofexplosion",
             beginnerRoot,
-            x = 3 * 1.5f,
+            x = 4 * 1.5f,
             y = 1.5f
         )
 
