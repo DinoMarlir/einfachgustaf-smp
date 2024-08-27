@@ -2,7 +2,11 @@ package live.einfachgustaf.mods.smp.advancement
 
 import live.einfachgustaf.mods.smp.advancement.impl.beginner.*
 import live.einfachgustaf.mods.smp.advancement.impl.challenging.AreYouUndead
-import live.einfachgustaf.mods.smp.advancement.impl.normal.*
+import live.einfachgustaf.mods.smp.advancement.impl.challenging.MasterOfExplosion
+import live.einfachgustaf.mods.smp.advancement.impl.challenging.NotSilkyEnough
+import live.einfachgustaf.mods.smp.advancement.impl.normal.ATrueGustaf
+import live.einfachgustaf.mods.smp.advancement.impl.normal.JukeBoxen
+import live.einfachgustaf.mods.smp.advancement.impl.normal.VillageAssassin
 
 object AdvancementRegistry {
 
