@@ -26,5 +26,6 @@ object AdvancementRegistry {
         VillageAssassin.register()
         BirthdayParty.register()
         DarkEnd.register()
+        WillItExplode.register()
     }
 }
