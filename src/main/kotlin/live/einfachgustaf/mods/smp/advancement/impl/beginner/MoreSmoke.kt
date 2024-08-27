@@ -1,4 +1,4 @@
-package live.einfachgustaf.mods.smp.advancement.impl.normal
+package live.einfachgustaf.mods.smp.advancement.impl.beginner
 
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
