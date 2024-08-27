@@ -2,9 +2,9 @@ package live.einfachgustaf.mods.smp.event
 
 import me.obsilabor.alert.Event
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.level.block.BedBlock
+import net.minecraft.world.level.block.Block
 
-class PlayerUseBedEvent(
+class PlayerUseBlockEvent(
     val player: Player,
-    val bedBlock: BedBlock
+    val block: Block
 ) : Event()

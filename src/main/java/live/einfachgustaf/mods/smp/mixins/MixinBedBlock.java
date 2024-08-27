@@ -1,6 +1,6 @@
 package live.einfachgustaf.mods.smp.mixins;
 
-import live.einfachgustaf.mods.smp.event.PlayerUseBedEvent;
+import live.einfachgustaf.mods.smp.event.PlayerUseBlockEvent;
 import me.obsilabor.alert.EventManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
@@ -19,7 +19,7 @@ public class MixinBedBlock {
 
     @Inject(at = @At("HEAD"), method = "useWithoutItem(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/phys/BlockHitResult;)Lnet/minecraft/world/InteractionResult;")
     public void injectUseWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult, CallbackInfoReturnable<InteractionResult> cir) {
-        EventManager.callEvent(new PlayerUseBedEvent(player, (BedBlock) (Object) this));
+        EventManager.callEvent(new PlayerUseBlockEvent(player, (BedBlock) (Object) this));
     }
 
 }

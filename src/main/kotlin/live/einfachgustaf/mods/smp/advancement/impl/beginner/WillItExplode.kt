@@ -4,7 +4,7 @@ import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.advancement.GustafAdvancement
 import live.einfachgustaf.mods.smp.advancement.impl.beginnerRoot
-import live.einfachgustaf.mods.smp.event.PlayerUseBedEvent
+import live.einfachgustaf.mods.smp.event.PlayerUseBlockEvent
 import live.einfachgustaf.mods.smp.extensions.asServerPlayer
 import me.obsilabor.alert.kotlin.subscribeToEvent
 import net.minecraft.advancements.AdvancementType
@@ -32,7 +32,7 @@ object WillItExplode {
             y = 1.5f * 3
         )
 
-        subscribeToEvent<PlayerUseBedEvent> { event ->
+        subscribeToEvent<PlayerUseBlockEvent> { event ->
             if (event.player.level().dimension() == Level.NETHER) {
                 mcCoroutineScope.launch {
                     Advancements.awardAdvancement(event.player.asServerPlayer() ?: return@launch, advancement)
