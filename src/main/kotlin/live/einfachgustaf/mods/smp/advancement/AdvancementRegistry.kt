@@ -19,5 +19,6 @@ object AdvancementRegistry {
         MasterOfExplosion.register()
         MoreSmoke.register()
         VillageAssassin.register()
+        BirthdayParty.register()
     }
 }
