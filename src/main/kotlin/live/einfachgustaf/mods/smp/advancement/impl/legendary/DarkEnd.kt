@@ -1,4 +1,4 @@
-package live.einfachgustaf.mods.smp.advancement.impl.normal
+package live.einfachgustaf.mods.smp.advancement.impl.legendary
 
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.advancement.Advancements
@@ -11,35 +11,38 @@ import net.minecraft.advancements.AdvancementType
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Items
-import net.silkmc.silk.core.item.itemStack
+import net.minecraft.world.level.Level
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
-object VillageAssassin {
+object DarkEnd {
 
     fun register() {
         val advancement = Advancements.register(
             GustafAdvancement(
-                Items.IRON_SWORD.defaultInstance,
-                literalText("Village Assassin"),
-                literalText("Töte einen Villager"),
+                Items.WARDEN_SPAWN_EGG.defaultInstance,
+                literalText("Dunkles Ende"),
+                literalText("Töte den Warden im End."),
                 AdvancementType.TASK,
                 isUnlocked = true,
-                rewards = setOf(itemStack(Items.EMERALD, 3) {})
+                rewards = setOf()
             ),
-            "villageassassin",
+            "darkend",
             beginnerRoot,
-            x = 1.5f * 3,
-            y = 1.5f * 2
+            x = 1.5f,
+            y = 4 * 1.5f
         )
 
         ServerLivingEntityEvents.AFTER_DEATH.register { entity, _ ->
-            if (entity.type == EntityType.VILLAGER && entity.wasKilledByPlayer()) {
+            if (entity.type == EntityType.WARDEN
+                && entity.wasKilledByPlayer()
+                && entity.level().dimension() == Level.END
+            ) {
                 mcCoroutineScope.launch {
-                    Advancements.awardAdvancement(
-                        (entity.killCredit as Player).asServerPlayer() ?: return@launch,
-                        advancement
-                    )
+                    val serverPlayer = (entity.killCredit as Player).asServerPlayer() ?: return@launch
+
+                    serverPlayer.giveExperienceLevels(70)
+                    Advancements.awardAdvancement(serverPlayer, advancement)
                 }
             }
         }
