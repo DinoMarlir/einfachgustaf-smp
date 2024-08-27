@@ -2,6 +2,7 @@ package live.einfachgustaf.mods.smp.advancement
 
 import live.einfachgustaf.mods.smp.advancement.impl.beginner.*
 import live.einfachgustaf.mods.smp.advancement.impl.challenging.AreYouUndead
+import live.einfachgustaf.mods.smp.advancement.impl.challenging.Colorful
 import live.einfachgustaf.mods.smp.advancement.impl.challenging.MasterOfExplosion
 import live.einfachgustaf.mods.smp.advancement.impl.challenging.NotSilkyEnough
 import live.einfachgustaf.mods.smp.advancement.impl.legendary.DarkEnd
@@ -26,5 +27,6 @@ object AdvancementRegistry {
         VillageAssassin.register()
         BirthdayParty.register()
         DarkEnd.register()
+        Colorful.register()
     }
 }
