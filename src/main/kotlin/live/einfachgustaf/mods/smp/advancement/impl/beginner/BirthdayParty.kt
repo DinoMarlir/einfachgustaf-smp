@@ -44,7 +44,7 @@ object BirthdayParty {
             AdvancementType.TASK,
             isUnlocked = true,
             rewards = setOf(
-                itemStack(Items.CANDLE, 1) {}
+                Items.CANDLE.defaultInstance
             )
         ), "birthdayparty", beginnerRoot, x = 1.5f * 4, y = 2 * 1.5f)
 
