@@ -46,7 +46,7 @@ object BirthdayParty {
             rewards = setOf(
                 itemStack(Items.CANDLE, 1) {}
             )
-        ), "birthdayparty", beginnerRoot, x = 1.5f * 3, y = 2 * 1.5f)
+        ), "birthdayparty", beginnerRoot, x = 1.5f * 4, y = 2 * 1.5f)
 
         subscribeToEvent<CandleLightUpEvent> { event ->
             if (candleCakes.contains(event.blockState.block)) {
