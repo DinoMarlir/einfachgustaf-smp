@@ -39,7 +39,6 @@ object Advancements {
      * @param path path of resource identifier to get advancement from
      * @return advancement with the given identifier path
      */
-    @Suppress("unused")
     fun advancement(path: String): CompilableAdvancement? {
         return advancements.firstOrNull { it.id == res(path) }
     }
