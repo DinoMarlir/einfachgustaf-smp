@@ -1,7 +1,6 @@
 package live.einfachgustaf.mods.smp.discord
 
 import dev.minn.jda.ktx.events.listener
-import dev.minn.jda.ktx.messages.MessageCreate
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.silkmc.silk.core.Silk
