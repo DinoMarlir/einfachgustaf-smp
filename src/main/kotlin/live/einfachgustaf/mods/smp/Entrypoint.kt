@@ -27,8 +27,7 @@ import org.apache.logging.log4j.Logger
 
 val LOGGER: Logger = LogManager.getLogger("smp")
     
-fun initMain() {
-}
+fun initMain() = Unit
 
 fun initServer() {
     // DATABASE
