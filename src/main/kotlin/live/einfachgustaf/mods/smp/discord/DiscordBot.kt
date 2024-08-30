@@ -24,7 +24,7 @@ object DiscordBot {
         }
     }
 
-    fun initBot() {
+    private fun initBot() {
         val jda = light(botToken, enableCoroutines = true) {
             intents += listOf(GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MESSAGES)
         }

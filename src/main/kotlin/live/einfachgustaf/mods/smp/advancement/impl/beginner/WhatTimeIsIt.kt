@@ -22,7 +22,7 @@ import kotlin.time.Duration.Companion.minutes
 
 object WhatTimeIsIt {
 
-    val playerJobMap = mutableMapOf<ServerPlayer, Job>()
+    private val playerJobMap = mutableMapOf<ServerPlayer, Job>()
 
     fun register() {
         val advancement = Advancements.register(

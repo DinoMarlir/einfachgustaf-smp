@@ -15,7 +15,7 @@ import net.silkmc.silk.core.text.literalText
 
 object BirthdayParty {
 
-    val candleCakes = setOf(
+    private val candleCakes = setOf(
         Blocks.CANDLE_CAKE,
         Blocks.WHITE_CANDLE_CAKE,
         Blocks.ORANGE_CANDLE_CAKE,

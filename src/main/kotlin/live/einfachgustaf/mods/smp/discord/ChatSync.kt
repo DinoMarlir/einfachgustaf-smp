@@ -8,7 +8,7 @@ import net.silkmc.silk.core.text.broadcastText
 import net.silkmc.silk.core.text.literalText
 
 object ChatSync {
-    val syncChannel = System.getenv("DISCORD_CHAT_SYNC_CHANNEL").toLongOrNull()
+    private val syncChannel = System.getenv("DISCORD_CHAT_SYNC_CHANNEL").toLongOrNull()
 
     fun init(jda: JDA) {
         if (syncChannel == null) {
