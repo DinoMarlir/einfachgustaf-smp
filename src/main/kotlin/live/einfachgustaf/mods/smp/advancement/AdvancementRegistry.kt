@@ -16,6 +16,7 @@ object AdvancementRegistry {
         TheBeginning.register()
         ALittleGift.register()
         HealthyNourishment.register()
+        Talkactive.register()
         WhatTimeIsIt.register()
         GettingWood.register()
         ATrueGustaf.register()
