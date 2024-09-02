@@ -15,7 +15,7 @@ import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
 object ALittleGift {
-    val itemPlayerMap = mutableMapOf<ItemStack, ServerPlayer>()
+    private val itemPlayerMap = mutableMapOf<ItemStack, ServerPlayer>()
 
     fun register() {
         val advancement = Advancements.register(

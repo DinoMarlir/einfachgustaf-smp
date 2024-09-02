@@ -11,7 +11,6 @@ import live.einfachgustaf.mods.smp.data.PlayerAdvancementData
 import net.minecraft.resources.ResourceLocation
 import net.silkmc.silk.core.task.mcCoroutineScope
 
-@Suppress("unused")
 object MongoDB: AbstractDataDriver() {
 
     private val mongoClient = MongoClient.create(System.getenv("MONGODB_URL"))

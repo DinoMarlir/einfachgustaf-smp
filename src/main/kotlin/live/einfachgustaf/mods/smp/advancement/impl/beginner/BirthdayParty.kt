@@ -10,13 +10,12 @@ import me.obsilabor.alert.kotlin.subscribeToEvent
 import net.minecraft.advancements.AdvancementType
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Blocks
-import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
 object BirthdayParty {
 
-    val candleCakes = setOf(
+    private val candleCakes = setOf(
         Blocks.CANDLE_CAKE,
         Blocks.WHITE_CANDLE_CAKE,
         Blocks.ORANGE_CANDLE_CAKE,
@@ -44,9 +43,9 @@ object BirthdayParty {
             AdvancementType.TASK,
             isUnlocked = true,
             rewards = setOf(
-                itemStack(Items.CANDLE, 1) {}
+                Items.CANDLE.defaultInstance
             )
-        ), "birthdayparty", beginnerRoot, x = 1.5f * 3, y = 2 * 1.5f)
+        ), "birthdayparty", beginnerRoot, x = 1.5f * 4, y = 2 * 1.5f)
 
         subscribeToEvent<CandleLightUpEvent> { event ->
             if (candleCakes.contains(event.blockState.block)) {

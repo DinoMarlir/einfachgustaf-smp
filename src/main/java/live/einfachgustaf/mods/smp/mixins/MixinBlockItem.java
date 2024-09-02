@@ -10,12 +10,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Objects;
+
 @Mixin(BlockItem.class)
 public class MixinBlockItem {
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/world/InteractionResult;sidedSuccess(Z)Lnet/minecraft/world/InteractionResult;"), method = "place(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/InteractionResult;")
     public void injectPlace(BlockPlaceContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        EventManager.callEvent(new PlayerBlockPlaceEvent(context.getPlayer(), (BlockItem) (Object) this, context));
+        EventManager.callEvent(new PlayerBlockPlaceEvent(Objects.requireNonNull(context.getPlayer()), (BlockItem) (Object) this, context));
     }
 
 }
