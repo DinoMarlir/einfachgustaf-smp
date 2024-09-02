@@ -1,5 +1,6 @@
-package live.einfachgustaf.mods.smp
+package live.einfachgustaf.mods.smp.extensions
 
+import live.einfachgustaf.mods.smp.LOGGER
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.PlayerTrigger

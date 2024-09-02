@@ -16,7 +16,7 @@ object AreYouUndead {
     fun register() {
         val advancement = Advancements.register(
             GustafAdvancement(
-                Items.HONEYCOMB.defaultInstance,
+                Items.SPIDER_SPAWN_EGG.defaultInstance,
                 literalText("Bist du untot!"),
                 literalText("Nehme 20 ganze Herzen Schaden auf einmal und überlebe es"),
                 AdvancementType.TASK,
@@ -25,7 +25,7 @@ object AreYouUndead {
             ),
             "areyouundead",
             beginnerRoot,
-            x = 1.5f * 3
+            x = 1.5f * 5
         )
 
         subscribeToEvent<PlayerDamageEvent> {
