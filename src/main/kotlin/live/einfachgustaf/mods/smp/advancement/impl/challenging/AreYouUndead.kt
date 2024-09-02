@@ -25,7 +25,7 @@ object AreYouUndead {
             ),
             "areyouundead",
             beginnerRoot,
-            x = 1.5f * 3
+            x = 1.5f * 4
         )
 
         subscribeToEvent<PlayerDamageEvent> {
