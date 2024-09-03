@@ -4,15 +4,6 @@ import dev.minn.jda.ktx.jdabuilder.intents
 import dev.minn.jda.ktx.jdabuilder.light
 import net.dv8tion.jda.api.requests.GatewayIntent
 
-/*
-ServerMessageEvents.ALLOW_CHAT_MESSAGE.register { message, player, _ ->
-
-        println("Message: ${message.signedContent()} from player ${player.name.tryCollapseToString()}")
-
-        true
-    }
- */
-
 object DiscordBot {
     private val botToken = System.getenv("DISCORD_BOT_TOKEN")
 
