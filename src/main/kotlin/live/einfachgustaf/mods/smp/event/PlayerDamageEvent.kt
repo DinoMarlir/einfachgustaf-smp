@@ -8,4 +8,4 @@ class PlayerDamageEvent(
     val player: ServerPlayer,
     val damage: Float,
     val damageSource: DamageSource
-): Event()
+) : Event()

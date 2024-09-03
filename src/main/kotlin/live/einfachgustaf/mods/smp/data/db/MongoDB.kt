@@ -11,7 +11,7 @@ import live.einfachgustaf.mods.smp.data.PlayerAdvancementData
 import net.minecraft.resources.ResourceLocation
 import net.silkmc.silk.core.task.mcCoroutineScope
 
-object MongoDB: AbstractDataDriver() {
+object MongoDB : AbstractDataDriver() {
 
     private val mongoClient = MongoClient.create(System.getenv("MONGODB_URL"))
     private val database = mongoClient.getDatabase(System.getenv("MONGODB_DATABASE"))
@@ -45,5 +45,4 @@ object MongoDB: AbstractDataDriver() {
             advancementsCollection.replaceOne(Filters.eq("uuid", uuid), data)
         }
     }
-
 }

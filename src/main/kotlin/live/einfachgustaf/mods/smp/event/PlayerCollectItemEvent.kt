@@ -7,4 +7,4 @@ import net.minecraft.world.item.ItemStack
 class PlayerCollectItemEvent(
     val player: Player,
     val item: ItemStack
-): Event()
+) : Event()

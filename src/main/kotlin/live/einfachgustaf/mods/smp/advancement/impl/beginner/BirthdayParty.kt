@@ -36,16 +36,18 @@ object BirthdayParty {
     )
 
     fun register() {
-        val advancement = Advancements.register(GustafAdvancement(
-            Items.CAKE.defaultInstance,
-            literalText("Birthday Party"),
-            literalText("Platziere eine Kerze auf einem Kuchen und zünde sie an"),
-            AdvancementType.TASK,
-            isUnlocked = true,
-            rewards = setOf(
-                Items.CANDLE.defaultInstance
-            )
-        ), "birthdayparty", beginnerRoot, x = 1.5f * 4, y = 2 * 1.5f)
+        val advancement = Advancements.register(
+            GustafAdvancement(
+                Items.CAKE.defaultInstance,
+                literalText("Birthday Party"),
+                literalText("Platziere eine Kerze auf einem Kuchen und zünde sie an"),
+                AdvancementType.TASK,
+                isUnlocked = true,
+                rewards = setOf(
+                    Items.CANDLE.defaultInstance
+                )
+            ), "birthdayparty", beginnerRoot, x = 1.5f * 4, y = 2 * 1.5f
+        )
 
         subscribeToEvent<CandleLightUpEvent> { event ->
             if (candleCakes.contains(event.blockState.block)) {
@@ -55,5 +57,4 @@ object BirthdayParty {
             }
         }
     }
-
 }

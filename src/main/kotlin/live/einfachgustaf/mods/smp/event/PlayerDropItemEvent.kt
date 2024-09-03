@@ -7,4 +7,4 @@ import net.minecraft.world.item.ItemStack
 class PlayerDropItemEvent(
     val player: ServerPlayer,
     val item: ItemStack
-): Event()
+) : Event()

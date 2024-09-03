@@ -15,7 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Inventory.class)
 public class MixinInventory {
 
-    @Shadow @Final public Player player;
+    @Shadow
+    @Final
+    public Player player;
 
     @Inject(at = @At("HEAD"), method = "add(Lnet/minecraft/world/item/ItemStack;)Z")
     public void injectAdd(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {

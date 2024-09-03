@@ -67,11 +67,9 @@ object Colorful {
                 }
             }
         }
-
     }
 
     private fun hasWool(player: Player): Boolean {
         return woolSet.all { wool -> return player.inventory.items.any { it.item == wool } }
     }
-
 }

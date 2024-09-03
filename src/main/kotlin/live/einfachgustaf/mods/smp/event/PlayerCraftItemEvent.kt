@@ -7,4 +7,4 @@ import net.minecraft.world.item.ItemStack
 class PlayerCraftItemEvent(
     val player: Player,
     val item: ItemStack
-): Event()
+) : Event()

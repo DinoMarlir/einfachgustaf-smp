@@ -91,5 +91,4 @@ object MasterOfExplosion {
             }
         }
     }
-
 }

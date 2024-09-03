@@ -54,5 +54,4 @@ object MoreSmoke {
     private fun isBlockAtModifiedY(yModifier: Int, item: Item, event: PlayerBlockPlaceEvent): Boolean {
         return event.player.world.getBlockState(event.blockPlaceContext.clickedPos.atY(event.blockPlaceContext.clickedPos.y + yModifier)).block.asItem() == item
     }
-
 }
