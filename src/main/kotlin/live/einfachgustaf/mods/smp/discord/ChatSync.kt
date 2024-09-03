@@ -21,10 +21,6 @@ object ChatSync {
             return
         }
 
-        ServerMessageEvents.CHAT_MESSAGE.register { _, _, _ ->
-            // TODO: send chat message to discord
-        }
-
         minecraftToDiscord(jda.getPrivateChannelById(syncChannel) ?: jda.getChannel(syncChannel) ?: return LOGGER.error("Failed to find Discord Channel for Minecraft chat sync!") )
         discordToMinecraft(jda)
     }
