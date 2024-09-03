@@ -45,5 +45,4 @@ object MongoDB : AbstractDataDriver() {
             advancementsCollection.replaceOne(Filters.eq("uuid", uuid), data)
         }
     }
-
 }
