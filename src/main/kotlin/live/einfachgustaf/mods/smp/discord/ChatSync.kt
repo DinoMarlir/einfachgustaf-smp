@@ -21,6 +21,7 @@ object ChatSync {
             return
         }
 
+        // TODO: fix channel not found
         minecraftToDiscord(
             jda.getPrivateChannelById(syncChannel) ?: jda.getChannel(syncChannel) ?: return LOGGER.error(
                 "Failed to find Discord Channel for Minecraft chat sync!"
