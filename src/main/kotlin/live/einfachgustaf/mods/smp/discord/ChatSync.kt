@@ -44,8 +44,7 @@ object ChatSync {
         })
     }
 
-    fun minecraftToDiscord(channel: MessageChannel) = ServerMessageEvents.CHAT_MESSAGE.register { message, player, _ ->
-
+    private fun minecraftToDiscord(channel: MessageChannel) = ServerMessageEvents.CHAT_MESSAGE.register { message, player, _ ->
         kotlin.runCatching {
             channel.sendMessage(
                 MessageCreate {
