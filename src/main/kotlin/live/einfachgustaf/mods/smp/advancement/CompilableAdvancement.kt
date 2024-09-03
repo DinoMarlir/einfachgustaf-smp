@@ -23,16 +23,18 @@ data class CompilableAdvancement(
      */
     fun compile(hide: Boolean = false, showToast: Boolean = true, showInChat: Boolean = true): AdvancementHolder {
         val entry = Advancement.Builder.advancement()
-            .display(DisplayInfo(
-                gustafAdvancement.displayIcon,
-                gustafAdvancement.title,
-                gustafAdvancement.description,
-                Optional.of(gustafAdvancement.backgroundResource),
-                gustafAdvancement.type,
-                showToast,
-                showInChat,
-                hide
-            ).location(x, y))
+            .display(
+                DisplayInfo(
+                    gustafAdvancement.displayIcon,
+                    gustafAdvancement.title,
+                    gustafAdvancement.description,
+                    Optional.of(gustafAdvancement.backgroundResource),
+                    gustafAdvancement.type,
+                    showToast,
+                    showInChat,
+                    hide
+                ).location(x, y)
+            )
             .addCriterion("dummy", CriteriaTriggers.IMPOSSIBLE.createCriterion(ImpossibleTrigger.TriggerInstance()))
         if (parent != null) {
             entry.parent(Advancements.advancement(parent)!!.compile())

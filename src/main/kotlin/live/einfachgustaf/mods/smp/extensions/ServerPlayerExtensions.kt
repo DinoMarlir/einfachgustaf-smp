@@ -18,17 +18,19 @@ import java.util.*
  * @param icon Item to be shown as icon
  */
 fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack, type: AdvancementType) {
-   val advancement = Advancement.Builder.advancement()
-        .display(DisplayInfo(
-            icon,
-            content,
-            literalText("This should not appear ingame"),
-            Optional.of(Advancements.DEFAULT_RESOURCE),
-            type,
-            true,
-            false,
-           true
-        ))
+    val advancement = Advancement.Builder.advancement()
+        .display(
+            DisplayInfo(
+                icon,
+                content,
+                literalText("This should not appear ingame"),
+                Optional.of(Advancements.DEFAULT_RESOURCE),
+                type,
+                true,
+                false,
+                true
+            )
+        )
         .addCriterion("dummy", PlayerTrigger.TriggerInstance.tick())
         .build(ResourceLocation.parse("einfachgustaf:/root/dummy"))
 

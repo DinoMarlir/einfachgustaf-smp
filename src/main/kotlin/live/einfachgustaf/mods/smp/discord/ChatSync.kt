@@ -21,7 +21,11 @@ object ChatSync {
             return
         }
 
-        minecraftToDiscord(jda.getPrivateChannelById(syncChannel) ?: jda.getChannel(syncChannel) ?: return LOGGER.error("Failed to find Discord Channel for Minecraft chat sync!") )
+        minecraftToDiscord(
+            jda.getPrivateChannelById(syncChannel) ?: jda.getChannel(syncChannel) ?: return LOGGER.error(
+                "Failed to find Discord Channel for Minecraft chat sync!"
+            )
+        )
         discordToMinecraft(jda)
     }
 
@@ -40,15 +44,16 @@ object ChatSync {
         })
     }
 
-    private fun minecraftToDiscord(channel: MessageChannel) = ServerMessageEvents.CHAT_MESSAGE.register { message, player, _ ->
-        kotlin.runCatching {
-            channel.sendMessage(
-                MessageCreate {
-                    content = "[Minecraft] ${player.name.tryCollapseToString()}: ${message.signedContent()}"
-                }
-            ).queue()
-        }.onFailure {
-            LOGGER.error("Failed to send message to Discord", it)
+    private fun minecraftToDiscord(channel: MessageChannel) =
+        ServerMessageEvents.CHAT_MESSAGE.register { message, player, _ ->
+            kotlin.runCatching {
+                channel.sendMessage(
+                    MessageCreate {
+                        content = "[Minecraft] ${player.name.tryCollapseToString()}: ${message.signedContent()}"
+                    }
+                ).queue()
+            }.onFailure {
+                LOGGER.error("Failed to send message to Discord", it)
+            }
         }
-    }
 }

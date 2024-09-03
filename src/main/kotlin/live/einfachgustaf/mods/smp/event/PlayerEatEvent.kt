@@ -11,4 +11,4 @@ class PlayerEatEvent(
     val level: Level,
     val itemStack: ItemStack,
     val foodProperties: FoodProperties
-): Event()
+) : Event()
