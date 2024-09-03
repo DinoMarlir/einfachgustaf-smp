@@ -29,7 +29,7 @@ object AreYouUndead {
         )
 
         subscribeToEvent<PlayerDamageEvent> {
-            if(it.damage >= 20.0f) {
+            if (it.damage >= 20.0f) {
                 mcCoroutineScope.launch {
                     Advancements.awardAdvancement(it.player, advancement)
                 }
