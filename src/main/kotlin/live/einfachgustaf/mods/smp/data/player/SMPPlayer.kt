@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SMPPlayer(
     val uuid: String,
-    val lastKnownName: String,
-    val discordId: String,
+    val lastKnownName: String? = null,
+    val discordId: String? = null,
     val advancements: Set<String> = emptySet()
 )
