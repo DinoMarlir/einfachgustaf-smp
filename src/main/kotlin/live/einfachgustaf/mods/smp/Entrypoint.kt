@@ -2,6 +2,7 @@ package live.einfachgustaf.mods.smp
 
 import live.einfachgustaf.mods.smp.advancement.AdvancementRegistry
 import live.einfachgustaf.mods.smp.advancement.Advancements
+import live.einfachgustaf.mods.smp.data.db.MongoDB
 import live.einfachgustaf.mods.smp.discord.DiscordBot
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.silkmc.silk.core.annotations.ExperimentalSilkApi
@@ -15,7 +16,8 @@ val LOGGER: Logger = LogManager.getLogger("smp")
 fun initMain() = Unit
 
 fun initServer() {
-    // TODO: DATABASE
+    // DATABASE
+    MongoDB
 
     // Discord Bot
     DiscordBot
