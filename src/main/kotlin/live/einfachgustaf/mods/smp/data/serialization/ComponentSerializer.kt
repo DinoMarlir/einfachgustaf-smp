@@ -8,6 +8,9 @@ import net.minecraft.network.chat.MutableComponent
 
 import net.silkmc.silk.core.serialization.SilkSerializer
 
+/**
+ * Serializer for MutableComponent.
+ */
 class ComponentSerializer : SilkSerializer<MutableComponent>() {
     override fun deserialize(decoder: Decoder): MutableComponent {
         return Component.Serializer.fromJson(decoder.decodeString(), VanillaRegistries.createLookup())!!
