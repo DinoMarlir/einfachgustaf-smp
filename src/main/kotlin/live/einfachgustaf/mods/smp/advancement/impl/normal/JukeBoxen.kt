@@ -14,6 +14,9 @@ import net.minecraft.world.level.block.Blocks
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Juke-Boxen" advancement, which is awarded when a player hits another player with a jukebox.
+ */
 object JukeBoxen {
 
     fun register() {

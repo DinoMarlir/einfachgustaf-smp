@@ -11,12 +11,21 @@ import live.einfachgustaf.mods.smp.data.PlayerAdvancementData
 import net.minecraft.resources.ResourceLocation
 import net.silkmc.silk.core.task.mcCoroutineScope
 
+/**
+ * MongoDB data driver implementation for managing player advancements.
+ */
 object MongoDB : AbstractDataDriver() {
 
     private val mongoClient = MongoClient.create(System.getenv("MONGODB_URL"))
     private val database = mongoClient.getDatabase(System.getenv("MONGODB_DATABASE"))
     private val advancementsCollection = database.getCollection<PlayerAdvancementData>("PLAYER_ADVANCEMENTS")
 
+    /**
+     * Awards an advancement to a player.
+     *
+     * @param uuid The UUID of the player.
+     * @param advancement The advancement to be awarded.
+     */
     override fun awardAdvancement(uuid: String, advancement: CompilableAdvancement) {
         mcCoroutineScope.launch {
             val advancements = getPlayerAdvancements(uuid).toMutableSet()
@@ -25,6 +34,12 @@ object MongoDB : AbstractDataDriver() {
         }
     }
 
+    /**
+     * Revokes an advancement from a player.
+     *
+     * @param uuid The UUID of the player.
+     * @param advancement The advancement to be revoked.
+     */
     override fun revokeAdvancement(uuid: String, advancement: CompilableAdvancement) {
         mcCoroutineScope.launch {
             val advancements = getPlayerAdvancements(uuid).toMutableSet()
@@ -33,11 +48,23 @@ object MongoDB : AbstractDataDriver() {
         }
     }
 
+    /**
+     * Retrieves the set of advancements a player has.
+     *
+     * @param uuid The UUID of the player.
+     * @return A set of advancements the player has.
+     */
     override suspend fun getPlayerAdvancements(uuid: String): Set<CompilableAdvancement> {
         val player = advancementsCollection.find(Filters.eq("uuid", uuid)).firstOrNull() ?: return emptySet()
         return player.advancements.mapNotNull { Advancements.advancement(ResourceLocation.parse(it)) }.toSet()
     }
 
+    /**
+     * Upserts the player advancement data in the database.
+     *
+     * @param uuid The UUID of the player.
+     * @param data The player advancement data to be upserted.
+     */
     private suspend fun upsert(uuid: String, data: PlayerAdvancementData) {
         if (advancementsCollection.find(Filters.eq("uuid", uuid)).firstOrNull() == null) {
             advancementsCollection.insertOne(data)

@@ -10,8 +10,14 @@ import live.einfachgustaf.mods.smp.advancement.impl.normal.ATrueGustaf
 import live.einfachgustaf.mods.smp.advancement.impl.normal.JukeBoxen
 import live.einfachgustaf.mods.smp.advancement.impl.normal.VillageAssassin
 
+/**
+ * Object that registers all advancements in the mod.
+ */
 object AdvancementRegistry {
 
+    /**
+     * Registers all advancements.
+     */
     init {
         TheBeginning.register()
         ALittleGift.register()

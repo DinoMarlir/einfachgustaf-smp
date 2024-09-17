@@ -11,6 +11,9 @@ import net.minecraft.data.registries.VanillaRegistries
 import net.minecraft.world.item.ItemStack
 import net.silkmc.silk.core.serialization.SilkSerializer
 
+/**
+ * Serializer for ItemStack.
+ */
 class ItemStackSerializer : SilkSerializer<ItemStack>() {
     private val context = VanillaRegistries.createLookup()
     private val itemParser = ItemParser(context)

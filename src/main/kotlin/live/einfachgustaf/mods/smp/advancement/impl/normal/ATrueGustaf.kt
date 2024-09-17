@@ -13,6 +13,9 @@ import net.minecraft.world.level.block.Blocks
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Ein wahrer Gustaf" advancement, which is awarded when a player crafts a jukebox.
+ */
 object ATrueGustaf {
 
     fun register() {
