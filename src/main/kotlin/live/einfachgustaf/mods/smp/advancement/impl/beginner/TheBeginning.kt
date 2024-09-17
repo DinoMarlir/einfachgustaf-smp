@@ -11,6 +11,9 @@ import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "The Beginning" advancement, which is awarded when a player joins the server.
+ */
 object TheBeginning {
 
     fun register() {

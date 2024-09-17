@@ -7,6 +7,11 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.Items
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * The root advancement for the beginner category.
+ * This advancement serves as the starting point for all beginner advancements.
+ * It is unlocked by default.
+ */
 val beginnerRoot = Advancements.createTab(
     GustafAdvancement(
         Items.WIND_CHARGE.defaultInstance,

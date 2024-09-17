@@ -14,6 +14,9 @@ import net.silkmc.silk.core.entity.world
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "More Smoke" advancement, which is awarded when a player places a hay block under a campfire.
+ */
 object MoreSmoke {
 
     fun register() {

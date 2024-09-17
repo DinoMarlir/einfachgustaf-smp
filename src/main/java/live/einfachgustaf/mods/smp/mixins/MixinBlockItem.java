@@ -19,5 +19,4 @@ public class MixinBlockItem {
     public void injectPlace(BlockPlaceContext context, CallbackInfoReturnable<InteractionResult> cir) {
         EventManager.callEvent(new PlayerBlockPlaceEvent(Objects.requireNonNull(context.getPlayer()), (BlockItem) (Object) this, context));
     }
-
 }

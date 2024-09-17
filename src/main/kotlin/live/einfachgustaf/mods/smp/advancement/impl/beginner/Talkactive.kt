@@ -10,6 +10,9 @@ import net.minecraft.world.item.Items
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Talkactive" advancement, which is awarded when a player sends a chat message.
+ */
 object Talkactive {
 
     fun register() {

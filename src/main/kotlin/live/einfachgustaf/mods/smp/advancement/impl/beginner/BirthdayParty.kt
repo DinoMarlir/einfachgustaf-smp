@@ -13,6 +13,9 @@ import net.minecraft.world.level.block.Blocks
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Birthday Party" advancement, which is awarded when a player lights a candle on a cake.
+ */
 object BirthdayParty {
 
     private val candleCakes = setOf(
