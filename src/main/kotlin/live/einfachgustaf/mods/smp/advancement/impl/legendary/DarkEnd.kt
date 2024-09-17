@@ -15,6 +15,9 @@ import net.minecraft.world.level.Level
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Dark End" advancement, which is awarded when a player kills a Warden in the End.
+ */
 object DarkEnd {
 
     fun register() {

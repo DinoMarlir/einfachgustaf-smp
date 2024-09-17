@@ -19,7 +19,9 @@ import net.silkmc.silk.core.text.literalText
 import kotlin.time.Duration.Companion.minutes
 
 // TODO: don't run job if player has the advancement already
-
+/**
+ * Handles the "What Time Is It?" advancement, which is awarded when a player has a clock in their inventory for 20 minutes.
+ */
 object WhatTimeIsIt {
 
     private val playerJobMap = mutableMapOf<ServerPlayer, Job>()

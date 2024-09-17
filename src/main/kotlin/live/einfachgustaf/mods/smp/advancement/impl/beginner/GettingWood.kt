@@ -12,6 +12,9 @@ import net.minecraft.world.level.block.Blocks
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Getting Wood" advancement, which is awarded when a player breaks a log block.
+ */
 object GettingWood {
 
     fun register() {

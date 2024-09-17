@@ -17,6 +17,9 @@ import net.silkmc.silk.core.item.itemStack
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Not Silky Enough" advancement, which is awarded when a player attempts to break a spawner with Silk Touch.
+ */
 object NotSilkyEnough {
 
     fun register() {
