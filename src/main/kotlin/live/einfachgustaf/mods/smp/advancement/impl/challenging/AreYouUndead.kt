@@ -11,6 +11,9 @@ import net.minecraft.world.item.Items
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Are You Undead" advancement, which is awarded when a player takes 20 hearts of damage at once and survives.
+ */
 object AreYouUndead {
 
     fun register() {

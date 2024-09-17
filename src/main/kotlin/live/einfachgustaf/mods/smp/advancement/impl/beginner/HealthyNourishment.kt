@@ -13,6 +13,9 @@ import net.minecraft.world.item.Items
 import net.silkmc.silk.core.task.mcCoroutineScope
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the "Healthy Nourishment" advancement, which is awarded when a player eats a vegetarian food item.
+ */
 object HealthyNourishment {
 
     private val foodList: Array<Item> = arrayOf(
