@@ -12,6 +12,9 @@ import net.silkmc.silk.core.Silk
 import net.silkmc.silk.core.text.broadcastText
 import net.silkmc.silk.core.text.literalText
 
+/**
+ * Handles the synchronization of chat messages between Minecraft and Discord.
+ */
 object ChatSync {
     private val syncChannel = System.getenv("DISCORD_CHAT_SYNC_CHANNEL").toLongOrNull()
 

@@ -4,6 +4,9 @@ import dev.minn.jda.ktx.jdabuilder.intents
 import dev.minn.jda.ktx.jdabuilder.light
 import net.dv8tion.jda.api.requests.GatewayIntent
 
+/**
+ * Initializes the Discord bot if the token is provided.
+ */
 object DiscordBot {
     private val botToken = System.getenv("DISCORD_BOT_TOKEN")
 
