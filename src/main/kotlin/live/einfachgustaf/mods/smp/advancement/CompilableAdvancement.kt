@@ -10,6 +10,15 @@ import net.minecraft.advancements.critereon.ImpossibleTrigger
 import net.minecraft.resources.ResourceLocation
 import java.util.*
 
+/**
+ * Data class representing a compilable advancement in the game.
+ *
+ * @property gustafAdvancement The underlying GustafAdvancement data.
+ * @property x The x-coordinate of the advancement in the advancement tree.
+ * @property y The y-coordinate of the advancement in the advancement tree.
+ * @property parent The resource location of the parent advancement, if any.
+ * @property path The path where the advancement will be saved.
+ */
 data class CompilableAdvancement(
     val gustafAdvancement: GustafAdvancement,
     val x: Float = 0f,
