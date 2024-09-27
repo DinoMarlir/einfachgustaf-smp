@@ -2,25 +2,25 @@ val javaVersion = 21
 val silkVersion = "1.10.7"
 
 plugins {
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.20"
     kotlin("plugin.serialization") version "2.0.0"
     id("fabric-loom") version "1.7-SNAPSHOT"
 }
 
 group = "live.einfachgustaf"
-version = "0.1+1.21"
+version = "0.1+1.21.1"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.21")
+    minecraft("com.mojang:minecraft:1.21.1")
     mappings(loom.officialMojangMappings())
 
-    modImplementation("net.fabricmc:fabric-loader:0.15.11")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.100.4+1.21")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.11.0+kotlin.2.0.0")
+    modImplementation("net.fabricmc:fabric-loader:0.16.5")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.105.0+1.21.1")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.12.2+kotlin.2.0.20")
 
     modImplementation("net.silkmc:silk-core:$silkVersion")
     modImplementation("net.silkmc:silk-commands:$silkVersion")
