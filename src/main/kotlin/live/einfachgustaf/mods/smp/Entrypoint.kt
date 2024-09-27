@@ -4,6 +4,8 @@ import live.einfachgustaf.mods.smp.advancement.AdvancementRegistry
 import live.einfachgustaf.mods.smp.advancement.Advancements
 import live.einfachgustaf.mods.smp.data.db.MongoDB
 import live.einfachgustaf.mods.smp.discord.DiscordBot
+import live.einfachgustaf.mods.smp.polymer.PolymerItemRegistry
+import live.einfachgustaf.mods.smp.polymer.PolymerResourceRegistry
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.silkmc.silk.core.annotations.ExperimentalSilkApi
 import net.silkmc.silk.core.event.Events
@@ -27,7 +29,12 @@ fun initServer() {
         Advancements.createAdvancements(player.player)
     }
 
+    // Listener
     postStart()
+
+    // Polymer
+    PolymerResourceRegistry
+    PolymerItemRegistry
 }
 
 @OptIn(ExperimentalSilkApi::class)
