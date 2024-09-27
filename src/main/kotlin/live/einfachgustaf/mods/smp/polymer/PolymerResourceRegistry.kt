@@ -12,6 +12,10 @@ object PolymerResourceRegistry {
      * Registers all resource pack components
      */
     init {
+        // mark resource pack as required
+        PolymerResourcePackUtils.markAsRequired()
+
+        // add mod assets
         if (PolymerResourcePackUtils.addModAssets("smp")) {
             LOGGER.info("Added assets to Polymer")
         } else {
