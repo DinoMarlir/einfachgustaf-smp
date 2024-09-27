@@ -6,7 +6,6 @@
 </p>
 
 # 🦈 EinfachGustaf SMP
-
 This is the source code of the [EinfachGustaf](https://youtube.com/EinfachGustaf) SMP. This SMP is hosted by the
 official Minecraft server of the German YouTuber [EinfachGustaf](https://youtube.com/EinfachGustaf).
 
@@ -15,16 +14,23 @@ official Minecraft server of the German YouTuber [EinfachGustaf](https://youtube
 > more information.
 
 ## 🍏 Features
-
 - Custom Advancements
 - Discord Chat bridge
 - Custom Items, Blocks and Equipment
 - Custom world
 
 ## ⬇️ Installation
-
 Currently, you have to compile it yourself. Java 21 is required to compile the project.
 
+### 📦 Requirements
+- Git
+- Java 21
+- MongoDB
+- Discord Bot (optional)
+  - Discord Bot Token
+  - Discord Chat Bridge Channel ID
+
+### 🛠️ Compiling
 ```shell
 git clone https://github.com/DinoMarlir/einfachgustaf-smp.git
 cd einfachgustaf-smp
