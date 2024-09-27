@@ -1,5 +1,6 @@
 val javaVersion = 21
 val silkVersion = "1.10.7"
+val polymerVersion = "0.9.16+1.21.1"
 
 plugins {
     kotlin("jvm") version "2.0.20"
@@ -12,6 +13,7 @@ version = "0.1+1.21.1"
 
 repositories {
     mavenCentral()
+    maven("https://maven.nucleoid.xyz")
 }
 
 dependencies {
@@ -35,6 +37,10 @@ dependencies {
     // Discord
     include(implementation("net.dv8tion:JDA:5.1.0")!!)
     include(implementation("club.minnced:jda-ktx:0.12.0")!!)
+
+    // Polymer
+    modImplementation("eu.pb4:polymer-core:$polymerVersion")
+    modImplementation("eu.pb4:polymer-resource-pack:$polymerVersion")
 }
 
 tasks {
