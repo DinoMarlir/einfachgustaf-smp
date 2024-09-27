@@ -16,7 +16,7 @@ object PolymerResourceRegistry {
         PolymerResourcePackUtils.markAsRequired()
 
         // add mod assets
-        if (PolymerResourcePackUtils.addModAssets("smp")) {
+        if (PolymerResourcePackUtils.addModAssets("einfachgustaf-smp")) {
             LOGGER.info("Added assets to Polymer")
         } else {
             LOGGER.error("Failed to add assets to Polymer")
