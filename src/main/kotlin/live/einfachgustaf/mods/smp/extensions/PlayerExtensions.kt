@@ -1,5 +1,6 @@
 package live.einfachgustaf.mods.smp.extensions
 
+import live.einfachgustaf.mods.smp.audiences
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import net.silkmc.silk.core.Silk
@@ -12,3 +13,10 @@ import net.silkmc.silk.core.Silk
 fun Player.asServerPlayer(): ServerPlayer? {
     return Silk.server?.playerList?.getPlayer(this.uuid)
 }
+
+/**
+ * Extension function to get the audience of a player.
+ *
+ * @return the audience of the player.
+ */
+fun Player.audience() = audiences.player(uuid)
