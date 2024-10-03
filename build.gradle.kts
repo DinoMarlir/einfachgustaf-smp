@@ -34,6 +34,11 @@ dependencies {
     include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.0")!!)
     include(implementation("org.mongodb:bson-kotlinx:5.1.0")!!)
 
+    // Adventure
+    implementation("net.kyori:adventure-api:4.17.0")
+    implementation("net.kyori:adventure-text-minimessage:4.17.0")
+    modImplementation("net.kyori:adventure-platform-fabric:5.14.1")
+
     // Discord
     include(implementation("net.dv8tion:JDA:5.1.0")!!)
     include(implementation("club.minnced:jda-ktx:0.12.0")!!)

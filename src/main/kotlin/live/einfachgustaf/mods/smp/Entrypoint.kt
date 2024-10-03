@@ -7,6 +7,7 @@ import live.einfachgustaf.mods.smp.discord.DiscordBot
 import live.einfachgustaf.mods.smp.polymer.PolymerItemRegistry
 import live.einfachgustaf.mods.smp.polymer.PolymerResourceRegistry
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
+import net.kyori.adventure.platform.fabric.FabricServerAudiences
 import net.silkmc.silk.core.annotations.ExperimentalSilkApi
 import net.silkmc.silk.core.event.Events
 import net.silkmc.silk.core.event.Server
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
 val LOGGER: Logger = LogManager.getLogger("smp")
+lateinit var audiences: FabricServerAudiences
 
 fun initMain() = Unit
 
@@ -41,4 +43,5 @@ fun initServer() {
 fun postStart() = Events.Server.postStart.listen {
     // ADVANCEMENTS
     AdvancementRegistry
+    audiences = FabricServerAudiences.of(it.server)
 }
