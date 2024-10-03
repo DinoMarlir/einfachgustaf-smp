@@ -30,7 +30,7 @@ data class TablistConfig(
     }
 
     class TablistCachedConfig: AbstractCachedConfig<TablistConfig>(
-        path = Path("config/tablist.json"),
+        path = Path("config/einfachgustaf-smp/tablist.json"),
         default = default(),
         serializer = serializer(),
         deserializer = serializer()
