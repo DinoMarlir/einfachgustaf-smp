@@ -5,6 +5,7 @@ import live.einfachgustaf.mods.smp.advancement.Advancements
 import net.minecraft.advancements.*
 import net.minecraft.advancements.critereon.PlayerTrigger
 import net.minecraft.network.chat.Component
+import net.minecraft.network.protocol.game.ClientboundTabListPacket
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
@@ -58,3 +59,14 @@ fun ServerPlayer.sendNotifcation(content: Component, icon: ItemStack, type: Adva
     )
     LOGGER.debug("Sent advancement deletion packet to $stringUUID")
 }
+
+/**
+ * Sends a tablist header and footer to the player.
+ *
+ * @param header The header component.
+ * @param footer The footer component.
+ */
+fun ServerPlayer.sendTabList(
+    header: Component,
+    footer: Component
+) = connection.send(ClientboundTabListPacket(header, footer))
