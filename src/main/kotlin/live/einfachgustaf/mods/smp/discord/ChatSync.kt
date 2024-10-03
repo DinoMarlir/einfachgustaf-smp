@@ -44,6 +44,7 @@ object ChatSync {
         discordToMinecraft(jda)
     }
 
+    // TODO: remove messages from bot
     private fun discordToMinecraft(jda: JDA) = jda.listener<MessageReceivedEvent> {
         val message = it.message
         val member = it.member?.effectiveName
