@@ -34,7 +34,7 @@ object ChatSync {
         jda.getPrivateChannelById(syncChannel)?.sendMessage(
             buildList {
                 add("# Connection to Minecraft chat established!")
-                add("Use @mc:<name> to mention a Minecraft player.")
+                add("Use **@mc:<name>** to mention a Minecraft player.")
                 add("If you are **ingame**, you can mention Discord users with **@discord:<name>** or **@dc:name**.")
                 add(" ")
                 add("> You can now chat with Minecraft players from Discord.")
