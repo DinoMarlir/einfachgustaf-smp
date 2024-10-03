@@ -18,10 +18,12 @@ data class TablistConfig(
             header = setOf(
                 "<gradient:#00a5ff:#0077b7>ᴇɪɴғᴀᴄʜɢᴜsᴛᴀғ.ʟɪᴠᴇ</gradient> <gray>-</gray> <gradient:#f4fc03:#fcc203>ᴍɪɴᴇᴄʀᴀғᴛ ᴏᴄᴇᴀɴ</gradient>",
                 "<gradient:#fcc203:#fcc203>ᴀᴋᴛᴜᴇʟʟᴇʀ sᴇʀᴠᴇʀ</gradient> <grey>➥</grey> <gradient:#fc0b03:#fc3503>sᴍᴘ</gradient>",
-                "<gradient:#fcc203:#fcc203>Oɴʟɪɴᴇ Pʟᴀʏᴇʀs</gradient> <grey>➥</grey> <gradient:#fc0b03:#fc3503>0/0</gradient>"
+                "<gradient:#fcc203:#fcc203>Oɴʟɪɴᴇ Pʟᴀʏᴇʀs</gradient> <grey>➥</grey> <gradient:#fc0b03:#fc3503>0/0</gradient>",
+                ""
             ),
             footer = setOf(
-                "<gradient:#00a5ff:#0077b7>ᴘᴏᴡᴇʀᴇᴅ ʙʏ </gradient><gradient:#dbd8d0:#ffffff>FᴀʙʀɪᴄMC</gradient><newline>",
+                "",
+                "<gradient:#00a5ff:#0077b7>ᴘᴏᴡᴇʀᴇᴅ ʙʏ </gradient><gradient:#dbd8d0:#ffffff>FᴀʙʀɪᴄMC</gradient>",
                 "<gradient:#00a5ff:#0077b7>ᴅᴇᴠᴇʟᴏᴘᴇᴅ ʙʏ </gradient><gradient:#00ffdd:#08c9b0>ᴛʜᴇ ᴇɪɴғᴀᴄʜɢᴜsᴛᴀғ.ʟɪᴠᴇ ᴅᴇᴠ ᴛᴇᴀᴍ</gradient> <gradient:#00a5ff:#0077b7>ᴡɪᴛʜ</gradient> <red>❤</red>"
             )
         )
