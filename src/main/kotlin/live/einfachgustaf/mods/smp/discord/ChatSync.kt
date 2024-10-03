@@ -26,10 +26,21 @@ object ChatSync {
 
         // TODO: fix channel not found
         minecraftToDiscord(
-            jda.getPrivateChannelById(syncChannel) ?: jda.getChannel(syncChannel) ?: return LOGGER.error(
+            jda.getPrivateChannelById(syncChannel) ?: jda.getTextChannelById(syncChannel) ?: jda.getChannel(syncChannel) ?: return LOGGER.error(
                 "Failed to find Discord Channel for Minecraft chat sync!"
             )
         )
+
+        jda.getPrivateChannelById(syncChannel)?.sendMessage(
+            buildList {
+                add("# Connection to Minecraft chat established!")
+                add("Use @mc:<name> to mention a Minecraft player.")
+                add("If you are **ingame**, you can mention Discord users with **@discord:<name>** or **@dc:name**.")
+                add(" ")
+                add("> You can now chat with Minecraft players from Discord.")
+            }.joinToString("\n")
+        )?.queue()
+
         discordToMinecraft(jda)
     }
 
