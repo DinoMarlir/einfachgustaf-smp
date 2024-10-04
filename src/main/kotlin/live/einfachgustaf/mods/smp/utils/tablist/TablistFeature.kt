@@ -2,6 +2,7 @@ package live.einfachgustaf.mods.smp.utils.tablist
 
 import kotlinx.coroutines.Job
 import live.einfachgustaf.mods.smp.extensions.audience
+import live.einfachgustaf.mods.smp.internal.ReloadableRegistry
 import live.einfachgustaf.mods.smp.utils.tablist.TablistConfig.Companion.config
 import net.minecraft.server.MinecraftServer
 import net.silkmc.silk.core.task.infiniteMcCoroutineTask
@@ -27,5 +28,9 @@ class TablistFeature(
                 config.get().buildFooter(TablistPlaceholderResolver(it, server))
             )
         }
+    }
+
+    init {
+        ReloadableRegistry.register(config)
     }
 }

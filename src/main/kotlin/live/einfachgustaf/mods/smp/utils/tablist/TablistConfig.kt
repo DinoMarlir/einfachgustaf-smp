@@ -1,6 +1,7 @@
 package live.einfachgustaf.mods.smp.utils.tablist
 
 import kotlinx.serialization.Serializable
+import live.einfachgustaf.mods.smp.internal.Reloadable
 import live.einfachgustaf.mods.smp.utils.AbstractCachedConfig
 import live.einfachgustaf.mods.smp.utils.miniMessage
 import net.kyori.adventure.text.Component
@@ -37,7 +38,11 @@ data class TablistConfig(
         default = default(),
         serializer = serializer(),
         deserializer = serializer()
-    )
+    ), Reloadable {
+        override fun reload() {
+            get(cached = false)
+        }
+    }
 
     fun buildHeader(tagResolver: TagResolver): Component = deserialize(header, tagResolver)
 
