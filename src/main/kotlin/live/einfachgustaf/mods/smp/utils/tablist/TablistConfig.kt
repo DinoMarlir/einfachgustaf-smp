@@ -40,7 +40,7 @@ data class TablistConfig(
         deserializer = serializer()
     ), Reloadable {
         override fun reload() {
-            get(cached = false)
+            get(cached = false) // if cached is false, the data is always read from the file and written to the cache
         }
     }
 
