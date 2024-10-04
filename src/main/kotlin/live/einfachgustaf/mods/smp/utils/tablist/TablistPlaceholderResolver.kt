@@ -22,8 +22,9 @@ class TablistPlaceholderResolver(
     }
 
     private fun resolve(name: String): Tag? = when(name) {
-        "player" -> Tag.inserting(player.name)
-        "online" -> Tag.inserting(Component.text(server.playerList.players.size))
+        "player.name" -> Tag.inserting(player.name)
+        "players.online" -> Tag.inserting(Component.text(server.playerList.players.size))
+        "players.max" -> Tag.inserting(Component.text(server.playerList.maxPlayers))
         else -> null
     }
 }

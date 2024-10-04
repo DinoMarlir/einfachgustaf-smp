@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import live.einfachgustaf.mods.smp.utils.AbstractCachedConfig
 import live.einfachgustaf.mods.smp.utils.miniMessage
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 import kotlin.io.path.Path
 
 @Serializable
@@ -18,7 +19,7 @@ data class TablistConfig(
             header = setOf(
                 "<gradient:#00a5ff:#0077b7>ᴇɪɴғᴀᴄʜɢᴜsᴛᴀғ.ʟɪᴠᴇ</gradient> <gray>-</gray> <gradient:#f4fc03:#fcc203>ᴍɪɴᴇᴄʀᴀғᴛ ᴏᴄᴇᴀɴ</gradient>",
                 "<gradient:#fcc203:#fcc203>ᴀᴋᴛᴜᴇʟʟᴇʀ sᴇʀᴠᴇʀ</gradient> <grey>➥</grey> <gradient:#fc0b03:#fc3503>sᴍᴘ</gradient>",
-                "<gradient:#fcc203:#fcc203>Oɴʟɪɴᴇ Pʟᴀʏᴇʀs</gradient> <grey>➥</grey> <gradient:#fc0b03:#fc3503>0/0</gradient>",
+                "<gradient:#fcc203:#fcc203>Oɴʟɪɴᴇ Pʟᴀʏᴇʀs</gradient> <grey>➥</grey> <gradient:#fc0b03:#fc3503><players.online>/<players.max></gradient>",
                 ""
             ),
             footer = setOf(
@@ -38,12 +39,13 @@ data class TablistConfig(
         deserializer = serializer()
     )
 
-    fun buildHeader(): Component = deserialize(header)
+    fun buildHeader(tagResolver: TagResolver): Component = deserialize(header, tagResolver)
 
-    fun buildFooter(): Component = deserialize(footer)
+    fun buildFooter(tagResolver: TagResolver): Component = deserialize(footer, tagResolver)
 
-    private fun deserialize(input: Set<String>): Component = miniMessage.deserialize(
-        input.joinToString("<newline>")
+    private fun deserialize(input: Set<String>, tagResolver: TagResolver): Component = miniMessage.deserialize(
+        input.joinToString("<newline>"),
+        tagResolver
     )
 }
 
