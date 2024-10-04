@@ -2,6 +2,7 @@ package live.einfachgustaf.mods.smp
 
 import live.einfachgustaf.mods.smp.advancement.AdvancementRegistry
 import live.einfachgustaf.mods.smp.advancement.Advancements
+import live.einfachgustaf.mods.smp.commands.smpReloadCommand
 import live.einfachgustaf.mods.smp.data.db.MongoDB
 import live.einfachgustaf.mods.smp.discord.DiscordBot
 import live.einfachgustaf.mods.smp.polymer.PolymerItemRegistry
@@ -38,6 +39,9 @@ fun initServer() {
     // Polymer
     PolymerResourceRegistry
     PolymerItemRegistry
+
+    // Commands
+    smpReloadCommand()
 }
 
 @OptIn(ExperimentalSilkApi::class)

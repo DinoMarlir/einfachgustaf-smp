@@ -20,8 +20,14 @@ object DiscordBot {
 
     private fun initBot() {
         val jda = light(botToken, enableCoroutines = true) {
-            intents += listOf(GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MESSAGES)
+            intents += listOf(
+                GatewayIntent.GUILD_MEMBERS,
+                GatewayIntent.MESSAGE_CONTENT,
+                GatewayIntent.GUILD_MESSAGES
+            )
         }
+
+        jda.awaitReady()
 
         ChatSync.init(jda)
     }
