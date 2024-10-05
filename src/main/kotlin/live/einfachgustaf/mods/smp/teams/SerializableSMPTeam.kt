@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * @param color The color of the team.
  */
 @Serializable
-data class SMPTeam(
+data class SerializableSMPTeam(
     val uuid: String,
     val name: String?,
     val color: String?
