@@ -11,10 +11,7 @@ import live.einfachgustaf.mods.smp.data.PlayerAdvancementData
 import net.minecraft.resources.ResourceLocation
 import net.silkmc.silk.core.task.mcCoroutineScope
 
-/**
- * MongoDB data driver implementation for managing player advancements.
- */
-object MongoDB : AbstractDataDriver() {
+object LegacyMongoDB : AbstractDataDriver() {
 
     private val mongoClient = MongoClient.create(System.getenv("MONGODB_URL"))
     private val database = mongoClient.getDatabase(System.getenv("MONGODB_DATABASE"))

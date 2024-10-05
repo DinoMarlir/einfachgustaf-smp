@@ -3,7 +3,6 @@ package live.einfachgustaf.mods.smp.advancement
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import live.einfachgustaf.mods.smp.LOGGER
-import live.einfachgustaf.mods.smp.data.db.MongoDB
 import net.minecraft.advancements.AdvancementProgress
 import net.minecraft.advancements.AdvancementRequirements
 import net.minecraft.advancements.DisplayInfo
@@ -100,9 +99,15 @@ object Advancements {
             delay(100)
             advancements.filter { it.gustafAdvancement.isUnlocked }.forEach { unlockAdvancement(serverPlayer, it) }
             awardAdvancement(serverPlayer, root, isRestore = true)
+            /*
+            TODO:
+
+            award advancements
+
             MongoDB.getPlayerAdvancements(serverPlayer.stringUUID).forEach {
                 awardAdvancement(serverPlayer, it, isRestore = true)
             }
+             */
         }
     }
 
@@ -132,9 +137,14 @@ object Advancements {
         progress.update(requirements)
         progress.grantProgress("dummy")
         if (!isRestore && !ignoreDuplicate) {
+            /*
+
+            TODO:
+
             if (MongoDB.getPlayerAdvancements(serverPlayer.stringUUID).any { it.id == advancement.id }) {
                 restoreOrDuplicate = true
             }
+             */
         }
         serverPlayer.connection.send(
             ClientboundUpdateAdvancementsPacket(
@@ -164,7 +174,7 @@ object Advancements {
                 //serverPlayer.containerMenu.broadcastChanges()
             }
         }
-        MongoDB.awardAdvancement(serverPlayer.stringUUID, advancement)
+        // TODO: award advancement MongoDB.awardAdvancement(serverPlayer.stringUUID, advancement)
     }
 
     /**
