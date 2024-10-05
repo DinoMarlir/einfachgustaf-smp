@@ -43,6 +43,24 @@ abstract class AbstractSMPTeam {
     abstract fun color(color: String)
 
     /**
+     * The players in the team.
+     *
+     * @since 0.1+1.21.1
+     * @return The players in the team.
+     */
+    @Deprecated(
+        message = "This is only an temporary solution. When the SMPPlayer gets introduced, this will be removed."
+    )
+    abstract fun players(): List<UUID>
+
+    /**
+     * Adds a player to the team.
+     *
+     * @param uuid The UUID of the player.
+     */
+    abstract fun addPlayer(uuid: UUID)
+    
+    /**
      * Updates the team.
      */
     abstract fun update()
