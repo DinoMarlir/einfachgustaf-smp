@@ -12,6 +12,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SMPTeam(
     val uuid: String,
-    val name: String,
-    val color: String
+    val name: String?,
+    val color: String?
 )
