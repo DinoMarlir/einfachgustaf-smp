@@ -3,6 +3,13 @@ package live.einfachgustaf.mods.smp.teams.impl
 import live.einfachgustaf.mods.smp.teams.AbstractSMPTeam
 import java.util.*
 
+/**
+ * Represents a team in the SMP.
+ *
+ * @param uuid The UUID of the team.
+ * @param name The name of the team.
+ * @param color The color of the team.
+ */
 class SMPTeamImpl(
     private val uuid: String, // TODO: Change to UUID, it's becuase of the serialization
     private var name: String,
