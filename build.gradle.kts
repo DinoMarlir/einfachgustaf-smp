@@ -26,6 +26,7 @@ dependencies {
 
     modImplementation("net.silkmc:silk-core:$silkVersion")
     modImplementation("net.silkmc:silk-commands:$silkVersion")
+    modImplementation("net.silkmc:silk-igui:$silkVersion")
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
     include(implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")!!)
