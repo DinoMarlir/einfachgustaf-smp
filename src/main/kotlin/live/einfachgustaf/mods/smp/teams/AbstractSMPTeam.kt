@@ -59,7 +59,15 @@ abstract class AbstractSMPTeam {
      * @param uuid The UUID of the player.
      */
     abstract fun addPlayer(uuid: UUID)
-    
+
+    /**
+     * Removes a player from the team.
+     *
+     * @param uuid The UUID of the player.
+     * @throws PlayerNotInTeamException If the player is not in the team.
+     */
+    abstract fun removePlayer(uuid: UUID)
+
     /**
      * Updates the team.
      */
