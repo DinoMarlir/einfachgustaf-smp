@@ -33,7 +33,7 @@ dependencies {
 
     // Database
     include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.0")!!)
-    include(implementation("org.mongodb:bson-kotlinx:5.1.0")!!)
+    include(implementation("org.mongodb:bson-kotlinx:5.2.0")!!)
 
     // Adventure
     implementation("net.kyori:adventure-api:4.17.0")
