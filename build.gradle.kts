@@ -1,6 +1,6 @@
 val javaVersion = 21
 val silkVersion = "1.10.7"
-val polymerVersion = "0.9.16+1.21.1"
+val polymerVersion = "0.9.17+1.21.1}"
 
 plugins {
     kotlin("jvm") version "2.0.20"
