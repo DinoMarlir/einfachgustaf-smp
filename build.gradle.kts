@@ -3,7 +3,7 @@ val silkVersion = "1.10.7"
 val polymerVersion = "0.9.16+1.21.1"
 
 plugins {
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.0.21"
     kotlin("plugin.serialization") version "2.0.0"
     id("fabric-loom") version "1.7-SNAPSHOT"
 }
