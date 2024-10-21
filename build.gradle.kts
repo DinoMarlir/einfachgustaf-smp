@@ -29,7 +29,7 @@ dependencies {
     modImplementation("net.silkmc:silk-igui:$silkVersion")
 
     include(implementation("me.obsilabor", "alert", "1.0.8"))
-    include(implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")!!)
+    include(implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")!!)
 
     // Database
     include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.2.0")!!)
