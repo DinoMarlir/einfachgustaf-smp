@@ -41,7 +41,7 @@ dependencies {
     modImplementation("net.kyori:adventure-platform-fabric:5.14.1")
 
     // Discord
-    include(implementation("net.dv8tion:JDA:5.1.2")!!)
+    include(implementation("net.dv8tion:JDA:5.2.0")!!)
     include(implementation("club.minnced:jda-ktx:0.12.0")!!)
 
     // Polymer
