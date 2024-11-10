@@ -32,7 +32,7 @@ dependencies {
     include(implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")!!)
 
     // Database
-    include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.2.0")!!)
+    include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.2.1")!!)
     include(implementation("org.mongodb:bson-kotlinx:5.2.0")!!)
 
     // Adventure
