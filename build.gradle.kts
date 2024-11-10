@@ -3,9 +3,9 @@ val silkVersion = "1.10.7"
 val polymerVersion = "0.9.17+1.21.1"
 
 plugins {
-    kotlin("jvm") version "2.0.21"
-    kotlin("plugin.serialization") version "2.0.21"
-    id("fabric-loom") version "1.7-SNAPSHOT"
+    alias(libs.plugins.jvm)
+    alias(libs.plugins.serialization)
+    alias(libs.plugins.fabricLoom)
 }
 
 group = "live.einfachgustaf"
@@ -20,33 +20,25 @@ dependencies {
     minecraft("com.mojang:minecraft:1.21.1")
     mappings(loom.officialMojangMappings())
 
-    modImplementation("net.fabricmc:fabric-loader:0.16.5")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.105.0+1.21.1")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.12.2+kotlin.2.0.20")
+    modImplementation(libs.bundles.fabric)
 
-    modImplementation("net.silkmc:silk-core:$silkVersion")
-    modImplementation("net.silkmc:silk-commands:$silkVersion")
-    modImplementation("net.silkmc:silk-igui:$silkVersion")
+    modImplementation(libs.bundles.silk)
 
-    include(implementation("me.obsilabor", "alert", "1.0.8"))
-    include(implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")!!)
+    include(dependency(libs.alert))
+    include(dependency(libs.kotlinxSerializationJson))
 
     // Database
-    include(implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.2.0")!!)
-    include(implementation("org.mongodb:bson-kotlinx:5.2.0")!!)
+    includeFromToml(libs.bundles.mongodb)
 
     // Adventure
-    implementation("net.kyori:adventure-api:4.17.0")
-    implementation("net.kyori:adventure-text-minimessage:4.17.0")
-    modImplementation("net.kyori:adventure-platform-fabric:5.14.1")
+    implementation(libs.bundles.kyoriAdventure)
+    modImplementation(libs.kyoriAdventurePlatformFabric)
 
     // Discord
-    include(implementation("net.dv8tion:JDA:5.1.2")!!)
-    include(implementation("club.minnced:jda-ktx:0.12.0")!!)
+    includeFromToml(libs.bundles.jda)
 
     // Polymer
-    modImplementation("eu.pb4:polymer-core:$polymerVersion")
-    modImplementation("eu.pb4:polymer-resource-pack:$polymerVersion")
+    includeFromToml(libs.bundles.polymer)
 }
 
 tasks {
@@ -66,4 +58,30 @@ kotlin {
         freeCompilerArgs = listOf("-Xjdk-release=$javaVersion", "-Xskip-prerelease-check")
         jvmToolchain(javaVersion)
     }
+}
+
+/**
+ * Adds a dependency (by the provider) to the project.
+ *
+ * @param provider The provider of the dependency.
+ *
+ * @return The dependency as Any.
+ */
+fun DependencyHandler.dependency(provider: Provider<MinimalExternalModuleDependency>): Any {
+    return implementation(provider.get().group, provider.get().name, provider.get().version)
+}
+
+/**
+ * Adds a dependency (by the provider) to the project.
+ *
+ * @param provider The provider of the dependency.
+ * @param implement Whether to implement the dependency.
+ *
+ * @return The dependency as Any.
+ */
+fun DependencyHandler.includeFromToml(provider: Provider<ExternalModuleDependencyBundle>, implement: Boolean = true): Dependency? {
+    if (implement) {
+        implementation(provider)
+    }
+    return include(provider)
 }

@@ -1,0 +1,53 @@
+[versions]
+kotlin = "2.0.21"
+fabric-loom = "1.7-SNAPSHOT"
+fabric-loader = "0.16.5"
+fabric-api = "0.105.0+1.21.1"
+fabric-language-kotlin = "1.12.2+kotlin.2.0.20"
+silk = "1.10.7"
+alert = "1.0.8"
+kotlinx-serialization = "1.7.3"
+mongodb = "5.2.0"
+kyori-adventure = "4.17.0"
+kyori-adventure-platform-fabric = "5.14.1"
+jda = "5.1.2"
+jda-ktx = "0.12.0"
+polymer = "0.9.17+1.21.1"
+
+[libraries]
+fabricLoader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
+fabricApi = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric-api" }
+fabricLanguageKotlin = { module = "net.fabricmc:fabric-language-kotlin", version.ref = "fabric-language-kotlin" }
+
+silkCore = { module = "net.silkmc:silk-core", version.ref = "silk" }
+silkCommands = { module = "net.silkmc:silk-commands", version.ref = "silk" }
+silkIGui = { module = "net.silkmc:silk-igui", version.ref = "silk" }
+
+alert = { module = "me.obsilabor:alert", version.ref = "alert" }
+kotlinxSerializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+mongodbDriverKotlinCoroutine = { module = "org.mongodb:mongodb-driver-kotlin-coroutine", version.ref = "mongodb" }
+mongodbBsonKotlinx = { module = "org.mongodb:bson-kotlinx", version.ref = "mongodb" }
+
+kyoriAdventureApi = { module = "net.kyori:adventure-api", version.ref = "kyori-adventure" }
+kyoriAdventureMiniMessage = { module = "net.kyori:adventure-text-minimessage", version.ref = "kyori-adventure" }
+kyoriAdventurePlatformFabric = { module = "net.kyori:adventure-platform-fabric", version.ref = "kyori-adventure-platform-fabric" }
+
+jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
+jdaKtx = { module = "club.minnced:jda-ktx", version.ref = "jda-ktx" }
+
+polymerCore = { module = "eu.pb4:polymer-core", version.ref = "polymer" }
+polymerResourcePack = { module = "eu.pb4:polymer-resource-pack", version.ref = "polymer" }
+
+[plugins]
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+fabricLoom = { id = "fabric-loom", version.ref = "fabric-loom" }
+
+[bundles]
+fabric = ["fabricLoader", "fabricApi", "fabricLanguageKotlin"]
+silk = ["silkCore", "silkCommands", "silkIGui"]
+mongodb = ["mongodbDriverKotlinCoroutine", "mongodbBsonKotlinx"]
+kyoriAdventure = ["kyoriAdventureApi", "kyoriAdventureMiniMessage"]
+jda = ["jda", "jdaKtx"]
+polymer = ["polymerCore", "polymerResourcePack"]
