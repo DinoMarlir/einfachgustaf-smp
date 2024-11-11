@@ -38,7 +38,7 @@ dependencies {
     // Adventure
     implementation("net.kyori:adventure-api:4.17.0")
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
-    modImplementation("net.kyori:adventure-platform-fabric:5.14.1")
+    modImplementation("net.kyori:adventure-platform-fabric:6.1.0")
 
     // Discord
     include(implementation("net.dv8tion:JDA:5.2.1")!!)
