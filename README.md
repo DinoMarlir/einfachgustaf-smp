@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DinoMarlir/einfachgustaf-smp/main/.github/img/einfachgustaf-logo.png", height=512, width=512 />
+  <img src="https://raw.githubusercontent.com/EinfachGustaf/SMPv2/main/.github/img/einfachgustaf-logo.png", height=512, width=512 />
 </p>
 <p align="center">
   <a href="https://discord.gg/qCZw9UeV7h"><img src="https://img.shields.io/discord/1065307087724363796?color=5865F2&logo=discord&logoColor=white" alt="Discord server" />
