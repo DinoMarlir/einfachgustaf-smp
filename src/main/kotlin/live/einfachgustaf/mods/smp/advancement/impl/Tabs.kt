@@ -14,11 +14,48 @@ import net.silkmc.silk.core.text.literalText
  */
 val beginnerRoot = Advancements.createTab(
     GustafAdvancement(
-        Items.WIND_CHARGE.defaultInstance,
-        literalText("EinfachGustaf"),
-        literalText("Test Advancements"),
+        Items.HONEYCOMB.defaultInstance,
+        literalText("Beginner"),
+        literalText("Anfänger Advancements"),
         AdvancementType.TASK,
         ResourceLocation.withDefaultNamespace("textures/block/melon_side.png"),
         isUnlocked = true
-    )
+    ),
+    path = "beginner"
+)
+
+val normalRoot = Advancements.createTab(
+    GustafAdvancement(
+        Items.CAMPFIRE.defaultInstance,
+        literalText("Normal"),
+        literalText("Normale Advancements"),
+        AdvancementType.TASK,
+        ResourceLocation.withDefaultNamespace("textures/block/melon_side.png"),
+        isUnlocked = true
+    ),
+    path = "normal"
+)
+
+val challengingRoot = Advancements.createTab(
+    GustafAdvancement(
+        Items.BOW.defaultInstance,
+        literalText("Challenging"),
+        literalText("Anspruchsvolle Advancements"),
+        AdvancementType.TASK,
+        ResourceLocation.withDefaultNamespace("textures/block/melon_side.png"),
+        isUnlocked = true
+    ),
+    path = "challenging"
+)
+
+val legendaryRoot = Advancements.createTab(
+    GustafAdvancement(
+        Items.RECOVERY_COMPASS.defaultInstance,
+        literalText("Legendary"),
+        literalText("Schwere Advancements"),
+        AdvancementType.TASK,
+        ResourceLocation.withDefaultNamespace("textures/block/melon_side.png"),
+        isUnlocked = true
+    ),
+    path = "legendary"
 )
