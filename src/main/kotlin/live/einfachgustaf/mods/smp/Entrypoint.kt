@@ -7,6 +7,7 @@ import live.einfachgustaf.mods.smp.data.db.MongoDB
 import live.einfachgustaf.mods.smp.discord.DiscordBot
 import live.einfachgustaf.mods.smp.polymer.PolymerItemRegistry
 import live.einfachgustaf.mods.smp.polymer.PolymerResourceRegistry
+import live.einfachgustaf.mods.smp.utils.tablist.TablistFeature
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.kyori.adventure.platform.fabric.FabricServerAudiences
 import net.silkmc.silk.core.annotations.ExperimentalSilkApi
@@ -45,7 +46,14 @@ fun initServer() {
 
 @OptIn(ExperimentalSilkApi::class)
 fun postStart() = Events.Server.postStart.listen {
+    val server = it.server
+
+    // KYORI AUDIENCE
+    audiences = FabricServerAudiences.of(server)
+
     // ADVANCEMENTS
     AdvancementRegistry
-    audiences = FabricServerAudiences.of(it.server)
+
+    // TABLIST
+    TablistFeature(server).startJob()
 }
