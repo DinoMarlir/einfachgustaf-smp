@@ -4,7 +4,7 @@ val polymerVersion = "0.9.17+1.21.1"
 
 plugins {
     kotlin("jvm") version "2.0.21"
-    kotlin("plugin.serialization") version "2.0.21"
+    kotlin("plugin.serialization") version "2.1.0"
     id("fabric-loom") version "1.8.10"
 }
 
