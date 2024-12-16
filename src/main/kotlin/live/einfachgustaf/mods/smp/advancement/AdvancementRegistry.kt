@@ -36,5 +36,6 @@ object AdvancementRegistry {
         BirthdayParty.register()
         DarkEnd.register()
         Colorful.register()
+        WillItExplode.register()
     }
 }
