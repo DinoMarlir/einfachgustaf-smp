@@ -21,8 +21,7 @@ lateinit var audiences: FabricServerAudiences
 fun initMain() = Unit
 
 fun initServer() {
-    // DATABASE
-    MongoDB
+    // TODO: DATABASE
 
     // Discord Bot
     DiscordBot
